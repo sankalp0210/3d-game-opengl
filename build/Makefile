@@ -177,6 +177,33 @@ src/color.cpp.s:
 	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/color.cpp.s
 .PHONY : src/color.cpp.s
 
+src/cylinder.o: src/cylinder.cpp.o
+
+.PHONY : src/cylinder.o
+
+# target to build an object file
+src/cylinder.cpp.o:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/cylinder.cpp.o
+.PHONY : src/cylinder.cpp.o
+
+src/cylinder.i: src/cylinder.cpp.i
+
+.PHONY : src/cylinder.i
+
+# target to preprocess a source file
+src/cylinder.cpp.i:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/cylinder.cpp.i
+.PHONY : src/cylinder.cpp.i
+
+src/cylinder.s: src/cylinder.cpp.s
+
+.PHONY : src/cylinder.s
+
+# target to generate assembly for a file
+src/cylinder.cpp.s:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/cylinder.cpp.s
+.PHONY : src/cylinder.cpp.s
+
 src/input.o: src/input.cpp.o
 
 .PHONY : src/input.o
@@ -285,6 +312,60 @@ src/other_handlers.cpp.s:
 	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/other_handlers.cpp.s
 .PHONY : src/other_handlers.cpp.s
 
+src/plane.o: src/plane.cpp.o
+
+.PHONY : src/plane.o
+
+# target to build an object file
+src/plane.cpp.o:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/plane.cpp.o
+.PHONY : src/plane.cpp.o
+
+src/plane.i: src/plane.cpp.i
+
+.PHONY : src/plane.i
+
+# target to preprocess a source file
+src/plane.cpp.i:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/plane.cpp.i
+.PHONY : src/plane.cpp.i
+
+src/plane.s: src/plane.cpp.s
+
+.PHONY : src/plane.s
+
+# target to generate assembly for a file
+src/plane.cpp.s:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/plane.cpp.s
+.PHONY : src/plane.cpp.s
+
+src/sphere.o: src/sphere.cpp.o
+
+.PHONY : src/sphere.o
+
+# target to build an object file
+src/sphere.cpp.o:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/sphere.cpp.o
+.PHONY : src/sphere.cpp.o
+
+src/sphere.i: src/sphere.cpp.i
+
+.PHONY : src/sphere.i
+
+# target to preprocess a source file
+src/sphere.cpp.i:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/sphere.cpp.i
+.PHONY : src/sphere.cpp.i
+
+src/sphere.s: src/sphere.cpp.s
+
+.PHONY : src/sphere.s
+
+# target to generate assembly for a file
+src/sphere.cpp.s:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/sphere.cpp.s
+.PHONY : src/sphere.cpp.s
+
 src/timer.o: src/timer.cpp.o
 
 .PHONY : src/timer.o
@@ -327,6 +408,9 @@ help:
 	@echo "... src/color.o"
 	@echo "... src/color.i"
 	@echo "... src/color.s"
+	@echo "... src/cylinder.o"
+	@echo "... src/cylinder.i"
+	@echo "... src/cylinder.s"
 	@echo "... src/input.o"
 	@echo "... src/input.i"
 	@echo "... src/input.s"
@@ -339,6 +423,12 @@ help:
 	@echo "... src/other_handlers.o"
 	@echo "... src/other_handlers.i"
 	@echo "... src/other_handlers.s"
+	@echo "... src/plane.o"
+	@echo "... src/plane.i"
+	@echo "... src/plane.s"
+	@echo "... src/sphere.o"
+	@echo "... src/sphere.i"
+	@echo "... src/sphere.s"
 	@echo "... src/timer.o"
 	@echo "... src/timer.i"
 	@echo "... src/timer.s"

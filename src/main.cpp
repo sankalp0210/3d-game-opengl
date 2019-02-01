@@ -1,8 +1,7 @@
 #include "main.h"
 #include "timer.h"
-#include "ball.h"
-#include "sphere.h"
-
+#include "cylinder.h"
+#include "plane.h"
 using namespace std;
 
 GLMatrices Matrices;
@@ -13,8 +12,8 @@ GLFWwindow *window;
 * Customizable functions *
 **************************/
 
-Ball ball1;
-Sphere sphere;
+Cylinder cylinder;
+Plane plane;
 int view = 1;
 float screen_zoom = 1, screen_center_x = 0, screen_center_y = 0;
 float camera_rotation_angle = 0;
@@ -33,7 +32,7 @@ void draw() {
 
     // Eye - Location of camera. Don't change unless you are sure!!
     glm::vec3 eye (0, 0, 10);
-    glm::vec3 eye1 (5, 5, 5);
+    glm::vec3 eye1 (8, 8, 8);
 
     // Target - Where is the camera looking at.  Don't change unless you are sure!!
     glm::vec3 target (0, 0, 0);
@@ -47,10 +46,6 @@ void draw() {
         Matrices.view = glm::lookAt( eye1, target, up ); // Rotating Camera for 3D
 
     // Don't change unless you are sure!!
-    // Matrices.view = glm::lookAt(glm::vec3(0, 0, 3), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0)); // Fixed camera for 2D (ortho) in XY plane
-
-    // Compute ViewProject matrix as view/camera might not be changed for this frame (basic scenario)
-    // Don't change unless you are sure!!
     glm::mat4 VP = Matrices.projection * Matrices.view;
 
     // Send our transformation to the currently bound shader, in the "MVP" uniform
@@ -59,8 +54,8 @@ void draw() {
     glm::mat4 MVP;  // MVP = Projection * View * Model
 
     // Scene render
-    ball1.draw(VP);
-    // sphere.draw(VP);
+    // cylinder.draw(VP);
+    plane.draw(VP);
 }
 
 void tick_input(GLFWwindow *window) {
@@ -74,8 +69,8 @@ void tick_input(GLFWwindow *window) {
 }
 
 void tick_elements() {
-    ball1.tick();
-    sphere.tick();
+    cylinder.tick();
+    plane.tick();
     // camera_rotation_angle += 1;
 }
 
@@ -85,9 +80,8 @@ void initGL(GLFWwindow *window, int width, int height) {
     /* Objects should be created before any other gl function and shaders */
     // Create the models
 
-    ball1  = Ball(0, 0, COLOR_RED);
-    sphere = Sphere( 0, 0 , 0, 2, COLOR_GREEN);
-
+    cylinder = Cylinder( 4, 0, 0 , 0, 2, 2, 2, 2, 2, COLOR_GREEN);
+    plane = Plane(0,0,0,COLOR_RED);
     // Create and compile our GLSL program from the shaders
     programID = LoadShaders("Sample_GL.vert", "Sample_GL.frag");
     // Get a handle for our "MVP" uniform
@@ -147,9 +141,10 @@ bool detect_collision(bounding_box_t a, bounding_box_t b) {
 }
 
 void reset_screen() {
-    float top    = screen_center_y + 1 / screen_zoom;
-    float bottom = screen_center_y - 1 / screen_zoom;
-    float left   = screen_center_x - 1 / screen_zoom;
-    float right  = screen_center_x + 1 / screen_zoom;
-    Matrices.projection = glm::perspective(left, right, bottom, top);
+    float top    = screen_center_y + 8 / screen_zoom;
+    float bottom = screen_center_y - 8 / screen_zoom;
+    float left   = screen_center_x - 8 / screen_zoom;
+    float right  = screen_center_x + 8 / screen_zoom;
+    // Matrices.projection = glm::perspective(45.0f, (right -left)/(top-bottom), 0.2f, 1000.0f);
+    Matrices.projection = glm::ortho(left, right, bottom, top,0.1f, 1000.0f);
 }
