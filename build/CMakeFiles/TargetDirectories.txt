@@ -1,0 +1,3 @@
+/home/sankalp/3d-game-opengl/build/CMakeFiles/rebuild_cache.dir
+/home/sankalp/3d-game-opengl/build/CMakeFiles/graphics_asgn1.dir
+/home/sankalp/3d-game-opengl/build/CMakeFiles/edit_cache.dir
