@@ -82,19 +82,15 @@ void Cylinder::set_speed(float x_speed, float y_speed, float z_speed) {
 
 
 bool Cylinder::tick() {
-    this->rotation.x += 1.0f;
-    this->position.y += this->speed.y;
-    this->position.z -= this->speed.z * cos(this->rotation.y * M_PI / 180.0f);
-    this->position.x += this->speed.x * sin(this->rotation.y * M_PI / 180.0f);
 }
 
 
 void Cylinder::draw(glm::mat4 VP) {
 	Matrices.model = glm::mat4(1.0f);
     glm::mat4 translate = glm::translate (this->position);    // glTranslatef
+    glm::mat4 rotate_x  = glm::rotate((float) (this->rotation.x * M_PI / 180.0f), glm::vec3(1, 0, 0));
     glm::mat4 rotate_y  = glm::rotate((float) (this->rotation.y * M_PI / 180.0f), glm::vec3(0, 1, 0));
     glm::mat4 rotate_z  = glm::rotate((float) (this->rotation.z * M_PI / 180.0f), glm::vec3(0, 0, 1));
-    glm::mat4 rotate_x  = glm::rotate((float) (this->rotation.x * M_PI / 180.0f), glm::vec3(1, 0, 0));
     Matrices.model *= (translate * rotate_y * rotate_z * rotate_x);
     glm::mat4 MVP = VP * Matrices.model;
     glUniformMatrix4fv(Matrices.MatrixID, 1, GL_FALSE, &MVP[0][0]);

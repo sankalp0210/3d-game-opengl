@@ -61,6 +61,8 @@ cylinder.h
 /home/sankalp/3d-game-opengl/src/cylinder.h
 plane.h
 /home/sankalp/3d-game-opengl/src/plane.h
+sea.h
+/home/sankalp/3d-game-opengl/src/sea.h
 
 /home/sankalp/3d-game-opengl/src/main.h
 iostream
@@ -142,6 +144,22 @@ cylinder.h
 vector
 -
 
+/home/sankalp/3d-game-opengl/src/sea.cpp
+main.h
+/home/sankalp/3d-game-opengl/src/main.h
+sea.h
+/home/sankalp/3d-game-opengl/src/sea.h
+cylinder.h
+/home/sankalp/3d-game-opengl/src/cylinder.h
+
+/home/sankalp/3d-game-opengl/src/sea.h
+main.h
+/home/sankalp/3d-game-opengl/src/main.h
+cylinder.h
+/home/sankalp/3d-game-opengl/src/cylinder.h
+vector
+-
+
 /home/sankalp/3d-game-opengl/src/sphere.cpp
 main.h
 /home/sankalp/3d-game-opengl/src/main.h
@@ -159,4 +177,14 @@ GLFW/glfw3.h
 -
 
 /home/sankalp/3d-game-opengl/src/timer.h
+
+/home/sankalp/3d-game-opengl/src/triangle.cpp
+triangle.h
+/home/sankalp/3d-game-opengl/src/triangle.h
+main.h
+/home/sankalp/3d-game-opengl/src/main.h
+
+/home/sankalp/3d-game-opengl/src/triangle.h
+main.h
+/home/sankalp/3d-game-opengl/src/main.h
 

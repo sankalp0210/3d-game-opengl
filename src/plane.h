@@ -15,13 +15,15 @@ public:
     float radius = 0;
     bool visible = true;
     void draw(glm::mat4 VP);
+    glm::mat4 ret;
     void set_position(float x, float y ,float z);
     void set_speed(float x_speed, float y_speed, float z_speed);
     void set_rotation(float x_rot, float y_rot, float z_rot);
     bool tick();
     bounding_box_t bounding_box();
 private:
-    VAO *object;
+    VAO *object1;
+    VAO *object2;
 };
 
 #endif // Plane_H

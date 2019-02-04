@@ -19,6 +19,7 @@ CMakeFiles/graphics_asgn1.dir/src/main.cpp.o: ../src/cylinder.h
 CMakeFiles/graphics_asgn1.dir/src/main.cpp.o: ../src/main.cpp
 CMakeFiles/graphics_asgn1.dir/src/main.cpp.o: ../src/main.h
 CMakeFiles/graphics_asgn1.dir/src/main.cpp.o: ../src/plane.h
+CMakeFiles/graphics_asgn1.dir/src/main.cpp.o: ../src/sea.h
 CMakeFiles/graphics_asgn1.dir/src/main.cpp.o: ../src/timer.h
 
 CMakeFiles/graphics_asgn1.dir/src/nonedit.cpp.o: ../src/main.h
@@ -32,10 +33,19 @@ CMakeFiles/graphics_asgn1.dir/src/plane.cpp.o: ../src/main.h
 CMakeFiles/graphics_asgn1.dir/src/plane.cpp.o: ../src/plane.cpp
 CMakeFiles/graphics_asgn1.dir/src/plane.cpp.o: ../src/plane.h
 
+CMakeFiles/graphics_asgn1.dir/src/sea.cpp.o: ../src/cylinder.h
+CMakeFiles/graphics_asgn1.dir/src/sea.cpp.o: ../src/main.h
+CMakeFiles/graphics_asgn1.dir/src/sea.cpp.o: ../src/sea.cpp
+CMakeFiles/graphics_asgn1.dir/src/sea.cpp.o: ../src/sea.h
+
 CMakeFiles/graphics_asgn1.dir/src/sphere.cpp.o: ../src/main.h
 CMakeFiles/graphics_asgn1.dir/src/sphere.cpp.o: ../src/sphere.cpp
 CMakeFiles/graphics_asgn1.dir/src/sphere.cpp.o: ../src/sphere.h
 
 CMakeFiles/graphics_asgn1.dir/src/timer.cpp.o: ../src/timer.cpp
 CMakeFiles/graphics_asgn1.dir/src/timer.cpp.o: ../src/timer.h
+
+CMakeFiles/graphics_asgn1.dir/src/triangle.cpp.o: ../src/main.h
+CMakeFiles/graphics_asgn1.dir/src/triangle.cpp.o: ../src/triangle.cpp
+CMakeFiles/graphics_asgn1.dir/src/triangle.cpp.o: ../src/triangle.h
 
