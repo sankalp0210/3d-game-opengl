@@ -21,7 +21,9 @@ CMakeFiles/graphics_asgn1.dir/src/main.cpp.o
  /home/sankalp/3d-game-opengl/src/main.h
  /home/sankalp/3d-game-opengl/src/plane.h
  /home/sankalp/3d-game-opengl/src/sea.h
+ /home/sankalp/3d-game-opengl/src/tapu.h
  /home/sankalp/3d-game-opengl/src/timer.h
+ /home/sankalp/3d-game-opengl/src/volcano.h
 CMakeFiles/graphics_asgn1.dir/src/nonedit.cpp.o
  /home/sankalp/3d-game-opengl/src/main.h
  /home/sankalp/3d-game-opengl/src/nonedit.cpp
@@ -42,6 +44,11 @@ CMakeFiles/graphics_asgn1.dir/src/sphere.cpp.o
  /home/sankalp/3d-game-opengl/src/main.h
  /home/sankalp/3d-game-opengl/src/sphere.cpp
  /home/sankalp/3d-game-opengl/src/sphere.h
+CMakeFiles/graphics_asgn1.dir/src/tapu.cpp.o
+ /home/sankalp/3d-game-opengl/src/cylinder.h
+ /home/sankalp/3d-game-opengl/src/main.h
+ /home/sankalp/3d-game-opengl/src/tapu.cpp
+ /home/sankalp/3d-game-opengl/src/tapu.h
 CMakeFiles/graphics_asgn1.dir/src/timer.cpp.o
  /home/sankalp/3d-game-opengl/src/timer.cpp
  /home/sankalp/3d-game-opengl/src/timer.h
@@ -49,3 +56,8 @@ CMakeFiles/graphics_asgn1.dir/src/triangle.cpp.o
  /home/sankalp/3d-game-opengl/src/main.h
  /home/sankalp/3d-game-opengl/src/triangle.cpp
  /home/sankalp/3d-game-opengl/src/triangle.h
+CMakeFiles/graphics_asgn1.dir/src/volcano.cpp.o
+ /home/sankalp/3d-game-opengl/src/cylinder.h
+ /home/sankalp/3d-game-opengl/src/main.h
+ /home/sankalp/3d-game-opengl/src/volcano.cpp
+ /home/sankalp/3d-game-opengl/src/volcano.h

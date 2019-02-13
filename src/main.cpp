@@ -3,6 +3,8 @@
 #include "cylinder.h"
 #include "plane.h"
 #include "sea.h"
+#include "tapu.h"
+#include "volcano.h"
 using namespace std;
 
 GLMatrices Matrices;
@@ -14,8 +16,10 @@ GLFWwindow *window;
 **************************/
 
 vector<Cylinder> cylinder;
+vector<Volcano> volcano;
 Plane plane;
 Sea sea;
+vector<Tapu> tapu;
 int view = 0;
 float camY = -15;
 float screen_zoom = 1, screen_center_x = 0, screen_center_y = 0;
@@ -35,6 +39,8 @@ void draw() {
 
     // Eye - Location of camera. Don't change unless you are sure!!
     glm::vec3 eye[5];
+    glm::vec3 up[5];
+    glm::vec3 target[5];
 
     // follow cam view
     eye[0] =  glm::vec3 (plane.position.x, plane.position.y + 10, plane.position.z + 12);
@@ -43,7 +49,7 @@ void draw() {
     // cout<< eye[1].x <<" "<< eye[1].y << " " << eye[1].z<<endl;
     
     // plane view
-    eye[2] =  glm::vec3 (plane.position.x, plane.position.y, plane.position.z);
+    eye[2] =  glm::vec3 (plane.position.x, plane.position.y + 2, plane.position.z-4);
     // tower view
     eye[3] =  glm::vec3 (plane.position.x, plane.position.y + 6, plane.position.z + 10);
     // helicopter cam view
@@ -51,14 +57,21 @@ void draw() {
 
     // Target - Where is the camera looking at.  Don't change unless you are sure!!
     // glm::vec3 target (0, 0, 0);
-    glm::vec3 target (plane.position.x, plane.position.y, plane.position.z);
-    
+    target[0] = glm::vec3 (plane.position.x, plane.position.y, plane.position.z -15);
+    target[1] = glm::vec3 (plane.position.x, plane.position.y, plane.position.z);
+    target[2] = glm::vec3 (plane.position.x, plane.position.y - 2, plane.position.z-10);
+    target[3] = glm::vec3 (plane.position.x, plane.position.y, plane.position.z);
+    target[4] = glm::vec3 (plane.position.x, plane.position.y, plane.position.z);
+
     // Up - Up vector defines tilt of camera.  Don't change unless you are sure!!
-    glm::vec3 up (0, 1, 0);
-    // glm::vec3 up (1, 0, 0);
+    up[0] = glm::vec3 (0, 1, 0);
+    up[1] = glm::vec3 (1, 0, 0);
+    up[2] = glm::vec3 (0, 1, 0);
+    up[3] = glm::vec3 (1, 0, 0);
+    up[4] = glm::vec3 (1, 0, 0);
 
     // Compute Camera matrix (view)
-    Matrices.view = glm::lookAt( eye[view], target, up ); // Rotating Camera for 3D
+    Matrices.view = glm::lookAt( eye[view], target[view], up[view] ); // Rotating Camera for 3D
 
     // Don't change unless you are sure!!
     glm::mat4 VP = Matrices.projection * Matrices.view;
@@ -69,10 +82,14 @@ void draw() {
     glm::mat4 MVP;  // MVP = Projection * View * Model
 
     // Scene render
+    sea.draw(VP);
     for(auto cy: cylinder)
         cy.draw(VP);
+    for(auto tp:tapu)
+        tp.draw(VP);
+    for(auto vc:volcano)
+        vc.draw(VP);
     plane.draw(VP);
-    sea.draw(VP);
 }
 
 void tick_input(GLFWwindow *window) {
@@ -87,47 +104,52 @@ void tick_input(GLFWwindow *window) {
     int w = glfwGetKey(window, GLFW_KEY_W);
     int space = glfwGetKey(window, GLFW_KEY_SPACE);
     int t = glfwGetKey(window, GLFW_KEY_T);
-    plane.rotation = glm::vec3(0,0,0);
-    if (t ) {
+    // plane.rotation = glm::vec3(0,0,0);
+    GLfloat deg = (2*3.1415926/360.0f);
+    if (t and !plane.timer) {
         view = (view+1)%5;
+        plane.timer = 1;
     }
     if(up){
-        plane.rotation.x = 1.0f;
+        plane.rotation.x += 1.0f;
     }
     if(down){
-        plane.rotation.x = -1.0f;
+        plane.rotation.x -= 1.0f;
     }
     if(q){
-        plane.rotation.y = 1.0f;
+        plane.rotation.y += 1.0f;
     }
     if(e){
-        plane.rotation.y = -1.0f;
+        plane.rotation.y -= 1.0f;
     }
     if(a){
-        plane.rotation.z = 1.0f;
+        plane.rotation.z += 1.0f;
     }
     if(d){
-        plane.rotation.z = -1.0f;
+        plane.rotation.z -= 1.0f;
     }
     if(space){
-        plane.position.y += plane.speed.y;
+        plane.position.y -= plane.speed.y;
     }
     if(w){
-        GLfloat deg = (2*3.1415926/360.0f)*plane.rotation.y;
-        plane.position.z -= plane.speed.z*cos(deg);
-        plane.position.x -= plane.speed.x*sin(deg);
+        plane.position.z -= plane.speed.z*cos(deg*plane.rotation.y);
+        plane.position.x -= plane.speed.x*sin(deg*plane.rotation.y);
     }
+    // cout<<plane.position.y<<endl;
     sea.position.x = plane.position.x;
     sea.position.z = plane.position.z;
+    cout<<volcano[0].position.x<<" "<<volcano[0].position.y<<" "<<volcano[0].position.z<<"          "<<plane.position.z<<endl;
 }
 
 void tick_elements() {
-    // camY -= 0.05f;
+    sea.tick();
     for(auto cy:cylinder)
         cy.tick();
+    for(auto tp:tapu)
+        tp.tick();
+    for(auto vc:volcano)
+        vc.tick();
     plane.tick();
-    sea.tick();
-    // camera_rotation_angle += 1;
 }
 
 /* Initialize the OpenGL rendering properties */
@@ -136,11 +158,14 @@ void initGL(GLFWwindow *window, int width, int height) {
     /* Objects should be created before any other gl function and shaders */
     // Create the models
 
-    cylinder.push_back(Cylinder( 50,  0, -30, -50, 1, 1, 2, 2, 5, COLOR_BLACK));
-    cylinder.push_back(Cylinder( 50, 10, -30, -20, 1, 1, 2, 2, 5, COLOR_BLACK));
-    cylinder.push_back(Cylinder( 50,-10, -30, -20, 1, 1, 2, 2, 5, COLOR_BLACK));
-    plane = Plane(0,0,0,COLOR_RED);
-    sea = Sea(0,-50.0f,0,100,COLOR_SEA);
+    // cylinder.push_back(Cylinder( 50,  0, -30, -50, 1, 1, 2, 2, 5, COLOR_BLACK));
+    // cylinder.push_back(Cylinder( 50, 10, -30, -20, 1, 1, 2, 2, 5, COLOR_BLACK));
+    // cylinder.push_back(Cylinder( 50,-10, -30, -20, 1, 1, 2, 2, 5, COLOR_BLACK));
+    plane = Plane(0, 0, 0, COLOR_RED);
+    sea = Sea(0, -50.0f, 0, 100, COLOR_SEA);
+    tapu.push_back(Tapu(0, -45, -80, 8, COLOR_GREEN));
+    volcano.push_back(Volcano(0, -42.5, -80, 5, 10));
+
     // Create and compile our GLSL program from the shaders
     programID = LoadShaders("Sample_GL.vert", "Sample_GL.frag");
     // Get a handle for our "MVP" uniform

@@ -14,8 +14,10 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/sankalp/3d-game-opengl/src/plane.cpp" "/home/sankalp/3d-game-opengl/build/CMakeFiles/graphics_asgn1.dir/src/plane.cpp.o"
   "/home/sankalp/3d-game-opengl/src/sea.cpp" "/home/sankalp/3d-game-opengl/build/CMakeFiles/graphics_asgn1.dir/src/sea.cpp.o"
   "/home/sankalp/3d-game-opengl/src/sphere.cpp" "/home/sankalp/3d-game-opengl/build/CMakeFiles/graphics_asgn1.dir/src/sphere.cpp.o"
+  "/home/sankalp/3d-game-opengl/src/tapu.cpp" "/home/sankalp/3d-game-opengl/build/CMakeFiles/graphics_asgn1.dir/src/tapu.cpp.o"
   "/home/sankalp/3d-game-opengl/src/timer.cpp" "/home/sankalp/3d-game-opengl/build/CMakeFiles/graphics_asgn1.dir/src/timer.cpp.o"
   "/home/sankalp/3d-game-opengl/src/triangle.cpp" "/home/sankalp/3d-game-opengl/build/CMakeFiles/graphics_asgn1.dir/src/triangle.cpp.o"
+  "/home/sankalp/3d-game-opengl/src/volcano.cpp" "/home/sankalp/3d-game-opengl/build/CMakeFiles/graphics_asgn1.dir/src/volcano.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

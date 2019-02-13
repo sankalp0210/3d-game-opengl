@@ -7,7 +7,7 @@ Plane::Plane(float x, float y, float z, color_t color) {
 	this->radius = radius;
 	this->set_position(x, y, z);
     this->set_rotation(0, 0, 0);
-	this->set_speed(0.1f, 0.1f, 0.1f);
+	this->set_speed(1.1f, 1.1f, 1.1f);
 	this->ret = glm::mat4(1.0f);
 	float rBodyT = 1.0f, rBodyB = 1.0f, hBody = 5.0f;
 	float rTop = 0.1f, hTop = 3.0f;
@@ -45,6 +45,10 @@ void Plane::set_speed(float x_speed, float y_speed, float z_speed) {
 
 
 bool Plane::tick() {
+	if(this->timer)
+		this->timer++;
+	if(this->timer > 30)
+		this->timer = 0;
 }
 
 
@@ -54,8 +58,9 @@ void Plane::draw(glm::mat4 VP) {
     glm::mat4 rotate_x  = glm::rotate((float) (this->rotation.x * M_PI / 180.0f), glm::vec3(1, 0, 0));
     glm::mat4 rotate_y  = glm::rotate((float) (this->rotation.y * M_PI / 180.0f), glm::vec3(0, 1, 0));
     glm::mat4 rotate_z  = glm::rotate((float) (this->rotation.z * M_PI / 180.0f), glm::vec3(0, 0, 1));
-	ret *= rotate_z * rotate_y *rotate_x;
-    Matrices.model *= ( translate * ret);
+	// ret *= rotate_z * rotate_y *rotate_x;
+    // Matrices.model *= ( translate * ret);
+    Matrices.model *= ( translate * rotate_y * rotate_x * rotate_z);
 	
     glm::mat4 MVP = VP * Matrices.model;
     glUniformMatrix4fv(Matrices.MatrixID, 1, GL_FALSE, &MVP[0][0]);

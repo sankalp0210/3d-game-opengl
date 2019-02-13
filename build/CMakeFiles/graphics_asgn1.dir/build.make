@@ -297,9 +297,33 @@ CMakeFiles/graphics_asgn1.dir/src/sphere.cpp.o.provides: CMakeFiles/graphics_asg
 CMakeFiles/graphics_asgn1.dir/src/sphere.cpp.o.provides.build: CMakeFiles/graphics_asgn1.dir/src/sphere.cpp.o
 
 
+CMakeFiles/graphics_asgn1.dir/src/tapu.cpp.o: CMakeFiles/graphics_asgn1.dir/flags.make
+CMakeFiles/graphics_asgn1.dir/src/tapu.cpp.o: ../src/tapu.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sankalp/3d-game-opengl/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/graphics_asgn1.dir/src/tapu.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/graphics_asgn1.dir/src/tapu.cpp.o -c /home/sankalp/3d-game-opengl/src/tapu.cpp
+
+CMakeFiles/graphics_asgn1.dir/src/tapu.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/graphics_asgn1.dir/src/tapu.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sankalp/3d-game-opengl/src/tapu.cpp > CMakeFiles/graphics_asgn1.dir/src/tapu.cpp.i
+
+CMakeFiles/graphics_asgn1.dir/src/tapu.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/graphics_asgn1.dir/src/tapu.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sankalp/3d-game-opengl/src/tapu.cpp -o CMakeFiles/graphics_asgn1.dir/src/tapu.cpp.s
+
+CMakeFiles/graphics_asgn1.dir/src/tapu.cpp.o.requires:
+
+.PHONY : CMakeFiles/graphics_asgn1.dir/src/tapu.cpp.o.requires
+
+CMakeFiles/graphics_asgn1.dir/src/tapu.cpp.o.provides: CMakeFiles/graphics_asgn1.dir/src/tapu.cpp.o.requires
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/tapu.cpp.o.provides.build
+.PHONY : CMakeFiles/graphics_asgn1.dir/src/tapu.cpp.o.provides
+
+CMakeFiles/graphics_asgn1.dir/src/tapu.cpp.o.provides.build: CMakeFiles/graphics_asgn1.dir/src/tapu.cpp.o
+
+
 CMakeFiles/graphics_asgn1.dir/src/timer.cpp.o: CMakeFiles/graphics_asgn1.dir/flags.make
 CMakeFiles/graphics_asgn1.dir/src/timer.cpp.o: ../src/timer.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sankalp/3d-game-opengl/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/graphics_asgn1.dir/src/timer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sankalp/3d-game-opengl/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/graphics_asgn1.dir/src/timer.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/graphics_asgn1.dir/src/timer.cpp.o -c /home/sankalp/3d-game-opengl/src/timer.cpp
 
 CMakeFiles/graphics_asgn1.dir/src/timer.cpp.i: cmake_force
@@ -323,7 +347,7 @@ CMakeFiles/graphics_asgn1.dir/src/timer.cpp.o.provides.build: CMakeFiles/graphic
 
 CMakeFiles/graphics_asgn1.dir/src/triangle.cpp.o: CMakeFiles/graphics_asgn1.dir/flags.make
 CMakeFiles/graphics_asgn1.dir/src/triangle.cpp.o: ../src/triangle.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sankalp/3d-game-opengl/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/graphics_asgn1.dir/src/triangle.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sankalp/3d-game-opengl/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/graphics_asgn1.dir/src/triangle.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/graphics_asgn1.dir/src/triangle.cpp.o -c /home/sankalp/3d-game-opengl/src/triangle.cpp
 
 CMakeFiles/graphics_asgn1.dir/src/triangle.cpp.i: cmake_force
@@ -345,6 +369,30 @@ CMakeFiles/graphics_asgn1.dir/src/triangle.cpp.o.provides: CMakeFiles/graphics_a
 CMakeFiles/graphics_asgn1.dir/src/triangle.cpp.o.provides.build: CMakeFiles/graphics_asgn1.dir/src/triangle.cpp.o
 
 
+CMakeFiles/graphics_asgn1.dir/src/volcano.cpp.o: CMakeFiles/graphics_asgn1.dir/flags.make
+CMakeFiles/graphics_asgn1.dir/src/volcano.cpp.o: ../src/volcano.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sankalp/3d-game-opengl/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/graphics_asgn1.dir/src/volcano.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/graphics_asgn1.dir/src/volcano.cpp.o -c /home/sankalp/3d-game-opengl/src/volcano.cpp
+
+CMakeFiles/graphics_asgn1.dir/src/volcano.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/graphics_asgn1.dir/src/volcano.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sankalp/3d-game-opengl/src/volcano.cpp > CMakeFiles/graphics_asgn1.dir/src/volcano.cpp.i
+
+CMakeFiles/graphics_asgn1.dir/src/volcano.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/graphics_asgn1.dir/src/volcano.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sankalp/3d-game-opengl/src/volcano.cpp -o CMakeFiles/graphics_asgn1.dir/src/volcano.cpp.s
+
+CMakeFiles/graphics_asgn1.dir/src/volcano.cpp.o.requires:
+
+.PHONY : CMakeFiles/graphics_asgn1.dir/src/volcano.cpp.o.requires
+
+CMakeFiles/graphics_asgn1.dir/src/volcano.cpp.o.provides: CMakeFiles/graphics_asgn1.dir/src/volcano.cpp.o.requires
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/volcano.cpp.o.provides.build
+.PHONY : CMakeFiles/graphics_asgn1.dir/src/volcano.cpp.o.provides
+
+CMakeFiles/graphics_asgn1.dir/src/volcano.cpp.o.provides.build: CMakeFiles/graphics_asgn1.dir/src/volcano.cpp.o
+
+
 # Object files for target graphics_asgn1
 graphics_asgn1_OBJECTS = \
 "CMakeFiles/graphics_asgn1.dir/src/ball.cpp.o" \
@@ -357,8 +405,10 @@ graphics_asgn1_OBJECTS = \
 "CMakeFiles/graphics_asgn1.dir/src/plane.cpp.o" \
 "CMakeFiles/graphics_asgn1.dir/src/sea.cpp.o" \
 "CMakeFiles/graphics_asgn1.dir/src/sphere.cpp.o" \
+"CMakeFiles/graphics_asgn1.dir/src/tapu.cpp.o" \
 "CMakeFiles/graphics_asgn1.dir/src/timer.cpp.o" \
-"CMakeFiles/graphics_asgn1.dir/src/triangle.cpp.o"
+"CMakeFiles/graphics_asgn1.dir/src/triangle.cpp.o" \
+"CMakeFiles/graphics_asgn1.dir/src/volcano.cpp.o"
 
 # External object files for target graphics_asgn1
 graphics_asgn1_EXTERNAL_OBJECTS =
@@ -373,11 +423,13 @@ graphics_asgn1: CMakeFiles/graphics_asgn1.dir/src/other_handlers.cpp.o
 graphics_asgn1: CMakeFiles/graphics_asgn1.dir/src/plane.cpp.o
 graphics_asgn1: CMakeFiles/graphics_asgn1.dir/src/sea.cpp.o
 graphics_asgn1: CMakeFiles/graphics_asgn1.dir/src/sphere.cpp.o
+graphics_asgn1: CMakeFiles/graphics_asgn1.dir/src/tapu.cpp.o
 graphics_asgn1: CMakeFiles/graphics_asgn1.dir/src/timer.cpp.o
 graphics_asgn1: CMakeFiles/graphics_asgn1.dir/src/triangle.cpp.o
+graphics_asgn1: CMakeFiles/graphics_asgn1.dir/src/volcano.cpp.o
 graphics_asgn1: CMakeFiles/graphics_asgn1.dir/build.make
 graphics_asgn1: CMakeFiles/graphics_asgn1.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/sankalp/3d-game-opengl/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Linking CXX executable graphics_asgn1"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/sankalp/3d-game-opengl/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Linking CXX executable graphics_asgn1"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/graphics_asgn1.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -395,8 +447,10 @@ CMakeFiles/graphics_asgn1.dir/requires: CMakeFiles/graphics_asgn1.dir/src/other_
 CMakeFiles/graphics_asgn1.dir/requires: CMakeFiles/graphics_asgn1.dir/src/plane.cpp.o.requires
 CMakeFiles/graphics_asgn1.dir/requires: CMakeFiles/graphics_asgn1.dir/src/sea.cpp.o.requires
 CMakeFiles/graphics_asgn1.dir/requires: CMakeFiles/graphics_asgn1.dir/src/sphere.cpp.o.requires
+CMakeFiles/graphics_asgn1.dir/requires: CMakeFiles/graphics_asgn1.dir/src/tapu.cpp.o.requires
 CMakeFiles/graphics_asgn1.dir/requires: CMakeFiles/graphics_asgn1.dir/src/timer.cpp.o.requires
 CMakeFiles/graphics_asgn1.dir/requires: CMakeFiles/graphics_asgn1.dir/src/triangle.cpp.o.requires
+CMakeFiles/graphics_asgn1.dir/requires: CMakeFiles/graphics_asgn1.dir/src/volcano.cpp.o.requires
 
 .PHONY : CMakeFiles/graphics_asgn1.dir/requires
 

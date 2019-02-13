@@ -393,6 +393,33 @@ src/sphere.cpp.s:
 	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/sphere.cpp.s
 .PHONY : src/sphere.cpp.s
 
+src/tapu.o: src/tapu.cpp.o
+
+.PHONY : src/tapu.o
+
+# target to build an object file
+src/tapu.cpp.o:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/tapu.cpp.o
+.PHONY : src/tapu.cpp.o
+
+src/tapu.i: src/tapu.cpp.i
+
+.PHONY : src/tapu.i
+
+# target to preprocess a source file
+src/tapu.cpp.i:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/tapu.cpp.i
+.PHONY : src/tapu.cpp.i
+
+src/tapu.s: src/tapu.cpp.s
+
+.PHONY : src/tapu.s
+
+# target to generate assembly for a file
+src/tapu.cpp.s:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/tapu.cpp.s
+.PHONY : src/tapu.cpp.s
+
 src/timer.o: src/timer.cpp.o
 
 .PHONY : src/timer.o
@@ -447,6 +474,33 @@ src/triangle.cpp.s:
 	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/triangle.cpp.s
 .PHONY : src/triangle.cpp.s
 
+src/volcano.o: src/volcano.cpp.o
+
+.PHONY : src/volcano.o
+
+# target to build an object file
+src/volcano.cpp.o:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/volcano.cpp.o
+.PHONY : src/volcano.cpp.o
+
+src/volcano.i: src/volcano.cpp.i
+
+.PHONY : src/volcano.i
+
+# target to preprocess a source file
+src/volcano.cpp.i:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/volcano.cpp.i
+.PHONY : src/volcano.cpp.i
+
+src/volcano.s: src/volcano.cpp.s
+
+.PHONY : src/volcano.s
+
+# target to generate assembly for a file
+src/volcano.cpp.s:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/volcano.cpp.s
+.PHONY : src/volcano.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -486,12 +540,18 @@ help:
 	@echo "... src/sphere.o"
 	@echo "... src/sphere.i"
 	@echo "... src/sphere.s"
+	@echo "... src/tapu.o"
+	@echo "... src/tapu.i"
+	@echo "... src/tapu.s"
 	@echo "... src/timer.o"
 	@echo "... src/timer.i"
 	@echo "... src/timer.s"
 	@echo "... src/triangle.o"
 	@echo "... src/triangle.i"
 	@echo "... src/triangle.s"
+	@echo "... src/volcano.o"
+	@echo "... src/volcano.i"
+	@echo "... src/volcano.s"
 .PHONY : help
 
 

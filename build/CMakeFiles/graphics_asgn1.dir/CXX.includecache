@@ -63,6 +63,10 @@ plane.h
 /home/sankalp/3d-game-opengl/src/plane.h
 sea.h
 /home/sankalp/3d-game-opengl/src/sea.h
+tapu.h
+/home/sankalp/3d-game-opengl/src/tapu.h
+volcano.h
+/home/sankalp/3d-game-opengl/src/volcano.h
 
 /home/sankalp/3d-game-opengl/src/main.h
 iostream
@@ -170,6 +174,22 @@ sphere.h
 main.h
 /home/sankalp/3d-game-opengl/src/main.h
 
+/home/sankalp/3d-game-opengl/src/tapu.cpp
+main.h
+/home/sankalp/3d-game-opengl/src/main.h
+tapu.h
+/home/sankalp/3d-game-opengl/src/tapu.h
+cylinder.h
+/home/sankalp/3d-game-opengl/src/cylinder.h
+
+/home/sankalp/3d-game-opengl/src/tapu.h
+main.h
+/home/sankalp/3d-game-opengl/src/main.h
+cylinder.h
+/home/sankalp/3d-game-opengl/src/cylinder.h
+vector
+-
+
 /home/sankalp/3d-game-opengl/src/timer.cpp
 timer.h
 /home/sankalp/3d-game-opengl/src/timer.h
@@ -187,4 +207,20 @@ main.h
 /home/sankalp/3d-game-opengl/src/triangle.h
 main.h
 /home/sankalp/3d-game-opengl/src/main.h
+
+/home/sankalp/3d-game-opengl/src/volcano.cpp
+main.h
+/home/sankalp/3d-game-opengl/src/main.h
+volcano.h
+/home/sankalp/3d-game-opengl/src/volcano.h
+cylinder.h
+/home/sankalp/3d-game-opengl/src/cylinder.h
+
+/home/sankalp/3d-game-opengl/src/volcano.h
+main.h
+/home/sankalp/3d-game-opengl/src/main.h
+cylinder.h
+/home/sankalp/3d-game-opengl/src/cylinder.h
+vector
+-
 

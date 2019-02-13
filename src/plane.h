@@ -14,6 +14,7 @@ public:
     color_t color;
     float radius = 0;
     bool visible = true;
+    int timer = 0;
     void draw(glm::mat4 VP);
     glm::mat4 ret;
     void set_position(float x, float y ,float z);
