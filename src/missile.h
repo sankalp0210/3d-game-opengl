@@ -14,7 +14,7 @@ public:
     bool visible = true;
     void draw(glm::mat4 VP);
     void set_position(float x, float y ,float z);
-    bool tick();
+    void tick();
     bounding_box_t bounding_box();
 private:
     std::vector<Cylinder> objects;

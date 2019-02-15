@@ -12,15 +12,29 @@ CMakeFiles/graphics_asgn1.dir/src/cylinder.cpp.o: ../src/cylinder.cpp
 CMakeFiles/graphics_asgn1.dir/src/cylinder.cpp.o: ../src/cylinder.h
 CMakeFiles/graphics_asgn1.dir/src/cylinder.cpp.o: ../src/main.h
 
+CMakeFiles/graphics_asgn1.dir/src/fuel.cpp.o: ../src/cylinder.h
+CMakeFiles/graphics_asgn1.dir/src/fuel.cpp.o: ../src/fuel.cpp
+CMakeFiles/graphics_asgn1.dir/src/fuel.cpp.o: ../src/fuel.h
+CMakeFiles/graphics_asgn1.dir/src/fuel.cpp.o: ../src/main.h
+
+CMakeFiles/graphics_asgn1.dir/src/health.cpp.o: ../src/cylinder.h
+CMakeFiles/graphics_asgn1.dir/src/health.cpp.o: ../src/health.cpp
+CMakeFiles/graphics_asgn1.dir/src/health.cpp.o: ../src/health.h
+CMakeFiles/graphics_asgn1.dir/src/health.cpp.o: ../src/main.h
+
 CMakeFiles/graphics_asgn1.dir/src/input.cpp.o: ../src/input.cpp
 CMakeFiles/graphics_asgn1.dir/src/input.cpp.o: ../src/main.h
 
 CMakeFiles/graphics_asgn1.dir/src/main.cpp.o: ../src/cylinder.h
+CMakeFiles/graphics_asgn1.dir/src/main.cpp.o: ../src/fuel.h
+CMakeFiles/graphics_asgn1.dir/src/main.cpp.o: ../src/health.h
 CMakeFiles/graphics_asgn1.dir/src/main.cpp.o: ../src/main.cpp
 CMakeFiles/graphics_asgn1.dir/src/main.cpp.o: ../src/main.h
 CMakeFiles/graphics_asgn1.dir/src/main.cpp.o: ../src/missile.h
 CMakeFiles/graphics_asgn1.dir/src/main.cpp.o: ../src/plane.h
+CMakeFiles/graphics_asgn1.dir/src/main.cpp.o: ../src/score.h
 CMakeFiles/graphics_asgn1.dir/src/main.cpp.o: ../src/sea.h
+CMakeFiles/graphics_asgn1.dir/src/main.cpp.o: ../src/speed.h
 CMakeFiles/graphics_asgn1.dir/src/main.cpp.o: ../src/tapu.h
 CMakeFiles/graphics_asgn1.dir/src/main.cpp.o: ../src/timer.h
 CMakeFiles/graphics_asgn1.dir/src/main.cpp.o: ../src/volcano.h
@@ -41,10 +55,18 @@ CMakeFiles/graphics_asgn1.dir/src/plane.cpp.o: ../src/main.h
 CMakeFiles/graphics_asgn1.dir/src/plane.cpp.o: ../src/plane.cpp
 CMakeFiles/graphics_asgn1.dir/src/plane.cpp.o: ../src/plane.h
 
+CMakeFiles/graphics_asgn1.dir/src/score.cpp.o: ../src/main.h
+CMakeFiles/graphics_asgn1.dir/src/score.cpp.o: ../src/score.cpp
+CMakeFiles/graphics_asgn1.dir/src/score.cpp.o: ../src/score.h
+
 CMakeFiles/graphics_asgn1.dir/src/sea.cpp.o: ../src/cylinder.h
 CMakeFiles/graphics_asgn1.dir/src/sea.cpp.o: ../src/main.h
 CMakeFiles/graphics_asgn1.dir/src/sea.cpp.o: ../src/sea.cpp
 CMakeFiles/graphics_asgn1.dir/src/sea.cpp.o: ../src/sea.h
+
+CMakeFiles/graphics_asgn1.dir/src/speed.cpp.o: ../src/main.h
+CMakeFiles/graphics_asgn1.dir/src/speed.cpp.o: ../src/speed.cpp
+CMakeFiles/graphics_asgn1.dir/src/speed.cpp.o: ../src/speed.h
 
 CMakeFiles/graphics_asgn1.dir/src/sphere.cpp.o: ../src/main.h
 CMakeFiles/graphics_asgn1.dir/src/sphere.cpp.o: ../src/sphere.cpp

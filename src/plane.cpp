@@ -1,10 +1,13 @@
 #include "main.h"
 #include "plane.h"
 #include "cylinder.h"
-
+ 
 Plane::Plane(float x, float y, float z, color_t color) {
+	this->ret = glm::mat4(1.0f);
 	this->color = color;
 	this->radius = radius;
+	this->missileTime = 0;
+	this->timer = 0;
 	this->set_position(x, y, z);
     this->set_rotation(0, 0, 0);
 	this->set_speed(1.1f, 1.1f, 1.1f);
@@ -12,9 +15,9 @@ Plane::Plane(float x, float y, float z, color_t color) {
 	float rBodyT = 1.0f, rBodyB = 1.0f, hBody = 5.0f;
 	float rTop = 0.1f, hTop = 3.0f;
 	float rBot = 1.5f, hBot = 2.0f;
-	parts.push_back(Cylinder( 50, x, y, z, rBodyT, rBodyT, rBodyB, rBodyB, hBody, color));
-	parts.push_back(Cylinder( 50, x, y,z-(hBody+hTop)/2, rBodyT, rBodyT, rTop, rTop, hTop, color));
-	// parts.push_back(Cylinder(50,x,y,z-(hBody+hBot)/2,rBody,rBody,rBot,rBot,hBot,color));
+	parts.push_back(Cylinder( 50, 0, 0, 0, rBodyT, rBodyT, rBodyB, rBodyB, hBody, color));
+	parts.push_back(Cylinder( 50, 0, 0,-(hBody+hTop)/2, rBodyT, rBodyT, rTop, rTop, hTop, color));
+	// parts.push_back(Cylinder(50, 0, 0, -(hBody+hBot)/2, rBody, rBody, rBot, rBot, hBot, color));
     float var1 = x + rBot/2;
     float var2 = x - rBot/2;
 	float wing = 3.0f;
@@ -43,12 +46,15 @@ void Plane::set_speed(float x_speed, float y_speed, float z_speed) {
 	this->speed = glm::vec3(x_speed, y_speed, z_speed);
 }
 
-
 bool Plane::tick() {
 	if(this->timer)
 		this->timer++;
 	if(this->timer > 30)
 		this->timer = 0;
+	if(this->missileTime)
+		this->missileTime++;
+	if(this->missileTime > 10)
+		this->missileTime = 0;
 }
 
 
@@ -58,16 +64,16 @@ void Plane::draw(glm::mat4 VP) {
     glm::mat4 rotate_x  = glm::rotate((float) (this->rotation.x * M_PI / 180.0f), glm::vec3(1, 0, 0));
     glm::mat4 rotate_y  = glm::rotate((float) (this->rotation.y * M_PI / 180.0f), glm::vec3(0, 1, 0));
     glm::mat4 rotate_z  = glm::rotate((float) (this->rotation.z * M_PI / 180.0f), glm::vec3(0, 0, 1));
-	// ret *= rotate_z * rotate_y *rotate_x;
-    // Matrices.model *= ( translate * ret);
-    Matrices.model *= ( translate * rotate_y * rotate_x * rotate_z);
-	
+	this->ret *= rotate_y * rotate_x * rotate_z;
+    Matrices.model *= ( translate * this->ret);
+
     glm::mat4 MVP = VP * Matrices.model;
     glUniformMatrix4fv(Matrices.MatrixID, 1, GL_FALSE, &MVP[0][0]);
     // draw3DObject(this->object2);
     draw3DObject(this->object1);
 	for(auto prt:this->parts)
 		prt.draw(MVP);
+	this->rotation = glm::vec3(0, 0, 0);
 }
 
 

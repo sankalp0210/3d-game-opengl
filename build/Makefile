@@ -204,6 +204,60 @@ src/cylinder.cpp.s:
 	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/cylinder.cpp.s
 .PHONY : src/cylinder.cpp.s
 
+src/fuel.o: src/fuel.cpp.o
+
+.PHONY : src/fuel.o
+
+# target to build an object file
+src/fuel.cpp.o:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/fuel.cpp.o
+.PHONY : src/fuel.cpp.o
+
+src/fuel.i: src/fuel.cpp.i
+
+.PHONY : src/fuel.i
+
+# target to preprocess a source file
+src/fuel.cpp.i:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/fuel.cpp.i
+.PHONY : src/fuel.cpp.i
+
+src/fuel.s: src/fuel.cpp.s
+
+.PHONY : src/fuel.s
+
+# target to generate assembly for a file
+src/fuel.cpp.s:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/fuel.cpp.s
+.PHONY : src/fuel.cpp.s
+
+src/health.o: src/health.cpp.o
+
+.PHONY : src/health.o
+
+# target to build an object file
+src/health.cpp.o:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/health.cpp.o
+.PHONY : src/health.cpp.o
+
+src/health.i: src/health.cpp.i
+
+.PHONY : src/health.i
+
+# target to preprocess a source file
+src/health.cpp.i:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/health.cpp.i
+.PHONY : src/health.cpp.i
+
+src/health.s: src/health.cpp.s
+
+.PHONY : src/health.s
+
+# target to generate assembly for a file
+src/health.cpp.s:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/health.cpp.s
+.PHONY : src/health.cpp.s
+
 src/input.o: src/input.cpp.o
 
 .PHONY : src/input.o
@@ -366,6 +420,33 @@ src/plane.cpp.s:
 	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/plane.cpp.s
 .PHONY : src/plane.cpp.s
 
+src/score.o: src/score.cpp.o
+
+.PHONY : src/score.o
+
+# target to build an object file
+src/score.cpp.o:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/score.cpp.o
+.PHONY : src/score.cpp.o
+
+src/score.i: src/score.cpp.i
+
+.PHONY : src/score.i
+
+# target to preprocess a source file
+src/score.cpp.i:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/score.cpp.i
+.PHONY : src/score.cpp.i
+
+src/score.s: src/score.cpp.s
+
+.PHONY : src/score.s
+
+# target to generate assembly for a file
+src/score.cpp.s:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/score.cpp.s
+.PHONY : src/score.cpp.s
+
 src/sea.o: src/sea.cpp.o
 
 .PHONY : src/sea.o
@@ -392,6 +473,33 @@ src/sea.s: src/sea.cpp.s
 src/sea.cpp.s:
 	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/sea.cpp.s
 .PHONY : src/sea.cpp.s
+
+src/speed.o: src/speed.cpp.o
+
+.PHONY : src/speed.o
+
+# target to build an object file
+src/speed.cpp.o:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/speed.cpp.o
+.PHONY : src/speed.cpp.o
+
+src/speed.i: src/speed.cpp.i
+
+.PHONY : src/speed.i
+
+# target to preprocess a source file
+src/speed.cpp.i:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/speed.cpp.i
+.PHONY : src/speed.cpp.i
+
+src/speed.s: src/speed.cpp.s
+
+.PHONY : src/speed.s
+
+# target to generate assembly for a file
+src/speed.cpp.s:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/speed.cpp.s
+.PHONY : src/speed.cpp.s
 
 src/sphere.o: src/sphere.cpp.o
 
@@ -546,6 +654,12 @@ help:
 	@echo "... src/cylinder.o"
 	@echo "... src/cylinder.i"
 	@echo "... src/cylinder.s"
+	@echo "... src/fuel.o"
+	@echo "... src/fuel.i"
+	@echo "... src/fuel.s"
+	@echo "... src/health.o"
+	@echo "... src/health.i"
+	@echo "... src/health.s"
 	@echo "... src/input.o"
 	@echo "... src/input.i"
 	@echo "... src/input.s"
@@ -564,9 +678,15 @@ help:
 	@echo "... src/plane.o"
 	@echo "... src/plane.i"
 	@echo "... src/plane.s"
+	@echo "... src/score.o"
+	@echo "... src/score.i"
+	@echo "... src/score.s"
 	@echo "... src/sea.o"
 	@echo "... src/sea.i"
 	@echo "... src/sea.s"
+	@echo "... src/speed.o"
+	@echo "... src/speed.i"
+	@echo "... src/speed.s"
 	@echo "... src/sphere.o"
 	@echo "... src/sphere.i"
 	@echo "... src/sphere.s"

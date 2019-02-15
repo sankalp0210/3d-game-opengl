@@ -1,13 +1,18 @@
 #include "main.h"
 #include "timer.h"
-#include "cylinder.h"
 #include "plane.h"
 #include "sea.h"
 #include "tapu.h"
 #include "volcano.h"
+#include "missile.h"
+#include "score.h"
+#include "health.h"
+#include "fuel.h"
+#include "speed.h"
 using namespace std;
 
 GLMatrices Matrices;
+GLMatrices Dash;
 GLuint     programID;
 GLFWwindow *window;
 
@@ -15,9 +20,13 @@ GLFWwindow *window;
 * Customizable functions *
 **************************/
 
-vector<Cylinder> cylinder;
+vector<Missile> missile;
 vector<Volcano> volcano;
 Plane plane;
+Score score;
+Health health;
+Fuel fuel;
+Speed speed;
 Sea sea;
 vector<Tapu> tapu;
 int view = 0;
@@ -46,7 +55,6 @@ void draw() {
     eye[0] =  glm::vec3 (plane.position.x, plane.position.y + 10, plane.position.z + 12);
     // Top view
     eye[1] =  glm::vec3 (plane.position.x, plane.position.y + 70, plane.position.z);
-    // cout<< eye[1].x <<" "<< eye[1].y << " " << eye[1].z<<endl;
     
     // plane view
     eye[2] =  glm::vec3 (plane.position.x, plane.position.y + 2, plane.position.z-4);
@@ -72,9 +80,10 @@ void draw() {
 
     // Compute Camera matrix (view)
     Matrices.view = glm::lookAt( eye[view], target[view], up[view] ); // Rotating Camera for 3D
-
+    Dash.view = glm::lookAt(glm::vec3(0,0,1), glm::vec3(0,0,0), glm::vec3(0,1,0));
     // Don't change unless you are sure!!
     glm::mat4 VP = Matrices.projection * Matrices.view;
+    glm::mat4 dashVP = Dash.projection * Dash.view;
 
     // Send our transformation to the currently bound shader, in the "MVP" uniform
     // For each model you render, since the MVP will be different (at least the M part)
@@ -83,13 +92,25 @@ void draw() {
 
     // Scene render
     sea.draw(VP);
-    for(auto cy: cylinder)
-        cy.draw(VP);
+    for(auto ms: missile)
+        ms.draw(VP);
     for(auto tp:tapu)
         tp.draw(VP);
     for(auto vc:volcano)
         vc.draw(VP);
     plane.draw(VP);
+    
+    // Dashboard
+    health.draw(dashVP);
+    fuel.draw(dashVP);
+    speed.draw(dashVP);
+    int num = plane.score;
+    int x = 1;
+    while(num>0){
+        score.draw(dashVP, num%10, 3*x);
+        num /= 10;
+        x++;
+    }
 }
 
 void tick_input(GLFWwindow *window) {
@@ -104,52 +125,61 @@ void tick_input(GLFWwindow *window) {
     int w = glfwGetKey(window, GLFW_KEY_W);
     int space = glfwGetKey(window, GLFW_KEY_SPACE);
     int t = glfwGetKey(window, GLFW_KEY_T);
+    int f = glfwGetKey(window, GLFW_KEY_F);
     // plane.rotation = glm::vec3(0,0,0);
     GLfloat deg = (2*3.1415926/360.0f);
+    if(f and !plane.missileTime){
+        plane.missileTime = 1;
+        missile.push_back(Missile(plane.position.x, plane.position.y+5, plane.position.z, 0.5, 2));
+    }
     if (t and !plane.timer) {
         view = (view+1)%5;
         plane.timer = 1;
     }
     if(up){
-        plane.rotation.x += 1.0f;
+        plane.rotation.x = 1.0f;
     }
     if(down){
-        plane.rotation.x -= 1.0f;
+        plane.rotation.x = -1.0f;
     }
     if(q){
-        plane.rotation.y += 1.0f;
+        plane.rotation.y = 1.0f;
     }
     if(e){
-        plane.rotation.y -= 1.0f;
+        plane.rotation.y = -1.0f;
     }
     if(a){
-        plane.rotation.z += 1.0f;
+        plane.rotation.z = 1.0f;
     }
     if(d){
-        plane.rotation.z -= 1.0f;
+        plane.rotation.z = -1.0f;
     }
     if(space){
         plane.position.y -= plane.speed.y;
     }
     if(w){
-        plane.position.z -= plane.speed.z*cos(deg*plane.rotation.y);
-        plane.position.x -= plane.speed.x*sin(deg*plane.rotation.y);
+        plane.position.z -= plane.speed.z*plane.ret[2][2];
+        plane.position.y -= plane.speed.y*plane.ret[2][1];
+        plane.position.x -= plane.speed.x*plane.ret[2][0];
+        plane.score += 1;
     }
-    // cout<<plane.position.y<<endl;
     sea.position.x = plane.position.x;
     sea.position.z = plane.position.z;
-    cout<<volcano[0].position.x<<" "<<volcano[0].position.y<<" "<<volcano[0].position.z<<"          "<<plane.position.z<<endl;
 }
 
 void tick_elements() {
     sea.tick();
-    for(auto cy:cylinder)
-        cy.tick();
+    for(auto &ms:missile)
+        ms.tick();
     for(auto tp:tapu)
         tp.tick();
     for(auto vc:volcano)
         vc.tick();
     plane.tick();
+    plane.health -= 0.001;
+    speed.rot -= 0.1f;
+    health.val = plane.health;
+    fuel.val = plane.fuel;
 }
 
 /* Initialize the OpenGL rendering properties */
@@ -157,11 +187,11 @@ void tick_elements() {
 void initGL(GLFWwindow *window, int width, int height) {
     /* Objects should be created before any other gl function and shaders */
     // Create the models
-
-    // cylinder.push_back(Cylinder( 50,  0, -30, -50, 1, 1, 2, 2, 5, COLOR_BLACK));
-    // cylinder.push_back(Cylinder( 50, 10, -30, -20, 1, 1, 2, 2, 5, COLOR_BLACK));
-    // cylinder.push_back(Cylinder( 50,-10, -30, -20, 1, 1, 2, 2, 5, COLOR_BLACK));
-    plane = Plane(0, 0, 0, COLOR_RED);
+    score = Score(30, 27);
+    health = Health(-29, -28);
+    fuel = Fuel(23, -28);
+    speed = Speed(-23, 25);
+    plane = Plane(0, -40, 0, COLOR_RED);
     sea = Sea(0, -50.0f, 0, 100, COLOR_SEA);
     tapu.push_back(Tapu(0, -45, -80, 8, COLOR_GREEN));
     volcano.push_back(Volcano(0, -42.5, -80, 5, 10));
@@ -170,7 +200,7 @@ void initGL(GLFWwindow *window, int width, int height) {
     programID = LoadShaders("Sample_GL.vert", "Sample_GL.frag");
     // Get a handle for our "MVP" uniform
     Matrices.MatrixID = glGetUniformLocation(programID, "MVP");
-
+    Dash.MatrixID = glGetUniformLocation(programID, "MVP");
 
     reshapeWindow (window, width, height);
 
@@ -229,5 +259,5 @@ void reset_screen() {
     float left   = screen_center_x - 30 / screen_zoom;
     float right  = screen_center_x + 30 / screen_zoom;
     Matrices.projection = glm::perspective(45.0f, (right -left)/(top-bottom), 1.0f, 500.0f);
-    // Matrices.projection = glm::ortho(left, right, bottom, top,0.1f, 1000.0f);
+    Dash.projection = glm::ortho(left, right, bottom, top,0.1f, 1000.0f);
 }
