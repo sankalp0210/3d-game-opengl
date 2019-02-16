@@ -2,16 +2,17 @@
 #include "cylinder.h"
 #include <vector>
 
-#ifndef MISSILE_H
-#define MISSILE_H
+#ifndef CANNON_H
+#define CANNON_H
 
-class Missile {
+class Cannon {
 public:
-    Missile() {}
-    Missile(float x, float y, float z, float r,float h, glm::vec3 dir, glm::mat4 rotate);
-    glm::vec3 position, rotation, dir;
+    Cannon() {}
+    Cannon(float x, float y, float z, float r,float h);
+    glm::vec3 position, dir;
     glm::mat4 rotate;
     float radius = 0;
+    int timer = 0;
     bool visible = true;
     void draw(glm::mat4 VP);
     void set_position(float x, float y ,float z);
@@ -21,4 +22,4 @@ private:
     std::vector<Cylinder> objects;
 };
 
-#endif // Missile_H
+#endif // Cannon_H

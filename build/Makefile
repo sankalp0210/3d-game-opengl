@@ -150,6 +150,33 @@ src/ball.cpp.s:
 	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/ball.cpp.s
 .PHONY : src/ball.cpp.s
 
+src/cannon.o: src/cannon.cpp.o
+
+.PHONY : src/cannon.o
+
+# target to build an object file
+src/cannon.cpp.o:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/cannon.cpp.o
+.PHONY : src/cannon.cpp.o
+
+src/cannon.i: src/cannon.cpp.i
+
+.PHONY : src/cannon.i
+
+# target to preprocess a source file
+src/cannon.cpp.i:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/cannon.cpp.i
+.PHONY : src/cannon.cpp.i
+
+src/cannon.s: src/cannon.cpp.s
+
+.PHONY : src/cannon.s
+
+# target to generate assembly for a file
+src/cannon.cpp.s:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/cannon.cpp.s
+.PHONY : src/cannon.cpp.s
+
 src/color.o: src/color.cpp.o
 
 .PHONY : src/color.o
@@ -230,6 +257,33 @@ src/fuel.s: src/fuel.cpp.s
 src/fuel.cpp.s:
 	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/fuel.cpp.s
 .PHONY : src/fuel.cpp.s
+
+src/gola.o: src/gola.cpp.o
+
+.PHONY : src/gola.o
+
+# target to build an object file
+src/gola.cpp.o:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/gola.cpp.o
+.PHONY : src/gola.cpp.o
+
+src/gola.i: src/gola.cpp.i
+
+.PHONY : src/gola.i
+
+# target to preprocess a source file
+src/gola.cpp.i:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/gola.cpp.i
+.PHONY : src/gola.cpp.i
+
+src/gola.s: src/gola.cpp.s
+
+.PHONY : src/gola.s
+
+# target to generate assembly for a file
+src/gola.cpp.s:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/gola.cpp.s
+.PHONY : src/gola.cpp.s
 
 src/health.o: src/health.cpp.o
 
@@ -392,6 +446,33 @@ src/other_handlers.s: src/other_handlers.cpp.s
 src/other_handlers.cpp.s:
 	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/other_handlers.cpp.s
 .PHONY : src/other_handlers.cpp.s
+
+src/para.o: src/para.cpp.o
+
+.PHONY : src/para.o
+
+# target to build an object file
+src/para.cpp.o:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/para.cpp.o
+.PHONY : src/para.cpp.o
+
+src/para.i: src/para.cpp.i
+
+.PHONY : src/para.i
+
+# target to preprocess a source file
+src/para.cpp.i:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/para.cpp.i
+.PHONY : src/para.cpp.i
+
+src/para.s: src/para.cpp.s
+
+.PHONY : src/para.s
+
+# target to generate assembly for a file
+src/para.cpp.s:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/para.cpp.s
+.PHONY : src/para.cpp.s
 
 src/plane.o: src/plane.cpp.o
 
@@ -648,6 +729,9 @@ help:
 	@echo "... src/ball.o"
 	@echo "... src/ball.i"
 	@echo "... src/ball.s"
+	@echo "... src/cannon.o"
+	@echo "... src/cannon.i"
+	@echo "... src/cannon.s"
 	@echo "... src/color.o"
 	@echo "... src/color.i"
 	@echo "... src/color.s"
@@ -657,6 +741,9 @@ help:
 	@echo "... src/fuel.o"
 	@echo "... src/fuel.i"
 	@echo "... src/fuel.s"
+	@echo "... src/gola.o"
+	@echo "... src/gola.i"
+	@echo "... src/gola.s"
 	@echo "... src/health.o"
 	@echo "... src/health.i"
 	@echo "... src/health.s"
@@ -675,6 +762,9 @@ help:
 	@echo "... src/other_handlers.o"
 	@echo "... src/other_handlers.i"
 	@echo "... src/other_handlers.s"
+	@echo "... src/para.o"
+	@echo "... src/para.i"
+	@echo "... src/para.s"
 	@echo "... src/plane.o"
 	@echo "... src/plane.i"
 	@echo "... src/plane.s"

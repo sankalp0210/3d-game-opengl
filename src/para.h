@@ -2,16 +2,15 @@
 #include "cylinder.h"
 #include <vector>
 
-#ifndef MISSILE_H
-#define MISSILE_H
+#ifndef PARA_H
+#define PARA_H
 
-class Missile {
+class Para {
 public:
-    Missile() {}
-    Missile(float x, float y, float z, float r,float h, glm::vec3 dir, glm::mat4 rotate);
-    glm::vec3 position, rotation, dir;
-    glm::mat4 rotate;
-    float radius = 0;
+    Para() {}
+    Para(float x, float y, float z, float r);
+    glm::vec3 position;
+    float radius = 0, angle = 0;
     bool visible = true;
     void draw(glm::mat4 VP);
     void set_position(float x, float y ,float z);
@@ -19,6 +18,7 @@ public:
     bounding_box_t bounding_box();
 private:
     std::vector<Cylinder> objects;
+    VAO *obj;
 };
 
-#endif // Missile_H
+#endif // Para_H

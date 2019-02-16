@@ -12,11 +12,19 @@ CMakeFiles/graphics_asgn1.dir/input.cpp.o
  /home/sankalp/3d-game-opengl/src/input.cpp
  /home/sankalp/3d-game-opengl/src/main.h
 CMakeFiles/graphics_asgn1.dir/main.cpp.o
- /home/sankalp/3d-game-opengl/src/ball.h
+ /home/sankalp/3d-game-opengl/src/cylinder.h
+ /home/sankalp/3d-game-opengl/src/fuel.h
+ /home/sankalp/3d-game-opengl/src/health.h
  /home/sankalp/3d-game-opengl/src/main.cpp
  /home/sankalp/3d-game-opengl/src/main.h
- /home/sankalp/3d-game-opengl/src/sphere.h
+ /home/sankalp/3d-game-opengl/src/missile.h
+ /home/sankalp/3d-game-opengl/src/plane.h
+ /home/sankalp/3d-game-opengl/src/score.h
+ /home/sankalp/3d-game-opengl/src/sea.h
+ /home/sankalp/3d-game-opengl/src/speed.h
+ /home/sankalp/3d-game-opengl/src/tapu.h
  /home/sankalp/3d-game-opengl/src/timer.h
+ /home/sankalp/3d-game-opengl/src/volcano.h
 CMakeFiles/graphics_asgn1.dir/nonedit.cpp.o
  /home/sankalp/3d-game-opengl/src/main.h
  /home/sankalp/3d-game-opengl/src/nonedit.cpp

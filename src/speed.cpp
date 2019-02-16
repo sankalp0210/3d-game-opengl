@@ -47,16 +47,12 @@ Speed::Speed(float x, float y) {
 
 void Speed::draw(glm::mat4 VP) {
     glm::mat4 translate = glm::translate (this->position);    // glTranslatef
-    Matrices.model = (translate);
+    glm::mat4 rotate = glm::rotate((float) (this->rot * M_PI / 180.0f), glm::vec3(0, 0, 1));
+    Matrices.model = (translate * rotate);
     glm::mat4 MVP = VP * Matrices.model;
     glUniformMatrix4fv(Matrices.MatrixID, 1, GL_FALSE, &MVP[0][0]);
     draw3DObject(this->object[0]);
     draw3DObject(this->object[1]);
-    
-    glm::mat4 rotate = glm::rotate((float) (this->rot * M_PI / 180.0f), glm::vec3(0, 0, 1));
-    Matrices.model = (translate * rotate);
-    MVP = VP * Matrices.model;
-    glUniformMatrix4fv(Matrices.MatrixID, 1, GL_FALSE, &MVP[0][0]);
     draw3DObject(this->object[2]);
 }
 

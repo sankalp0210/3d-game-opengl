@@ -9,6 +9,9 @@
 #include "health.h"
 #include "fuel.h"
 #include "speed.h"
+#include "para.h"
+#include "cannon.h"
+#include "gola.h"
 using namespace std;
 
 GLMatrices Matrices;
@@ -22,6 +25,9 @@ GLFWwindow *window;
 
 vector<Missile> missile;
 vector<Volcano> volcano;
+vector<Para> para;
+vector<Gola> gola;
+vector<Cannon> cannon;
 Plane plane;
 Score score;
 Health health;
@@ -50,32 +56,30 @@ void draw() {
     glm::vec3 eye[5];
     glm::vec3 up[5];
     glm::vec3 target[5];
-
+    int d1 = 10, d2 = 20;
     // follow cam view
-    eye[0] =  glm::vec3 (plane.position.x, plane.position.y + 10, plane.position.z + 12);
+    eye[0] =  glm::vec3 (plane.position.x + (d1*plane.ret[1][0] + d2*plane.ret[2][0]), plane.position.y + (d1*plane.ret[1][1] + d2*plane.ret[2][1]), plane.position.z + (d1*plane.ret[1][2] + d2*plane.ret[2][2]));
+    target[0] = glm::vec3 (plane.position.x, plane.position.y, plane.position.z);
+    up[0] = glm::vec3 (plane.ret[1][0], plane.ret[1][1], plane.ret[1][2]);
+    
     // Top view
     eye[1] =  glm::vec3 (plane.position.x, plane.position.y + 70, plane.position.z);
+    target[1] = glm::vec3 (plane.position.x, plane.position.y, plane.position.z);
+    up[1] = glm::vec3 (1, 0, 0);    
     
     // plane view
     eye[2] =  glm::vec3 (plane.position.x, plane.position.y + 2, plane.position.z-4);
+    target[2] = glm::vec3 (plane.position.x, plane.position.y - 2, plane.position.z-10);
+    up[2] = glm::vec3 (0, 1, 0);
+    
     // tower view
     eye[3] =  glm::vec3 (plane.position.x, plane.position.y + 6, plane.position.z + 10);
+    target[3] = glm::vec3 (plane.position.x, plane.position.y, plane.position.z);
+    up[3] = glm::vec3 (1, 0, 0);
+    
     // helicopter cam view
     eye[4] =  glm::vec3 (plane.position.x, plane.position.y + 6, plane.position.z + 10);
-
-    // Target - Where is the camera looking at.  Don't change unless you are sure!!
-    // glm::vec3 target (0, 0, 0);
-    target[0] = glm::vec3 (plane.position.x, plane.position.y, plane.position.z -15);
-    target[1] = glm::vec3 (plane.position.x, plane.position.y, plane.position.z);
-    target[2] = glm::vec3 (plane.position.x, plane.position.y - 2, plane.position.z-10);
-    target[3] = glm::vec3 (plane.position.x, plane.position.y, plane.position.z);
     target[4] = glm::vec3 (plane.position.x, plane.position.y, plane.position.z);
-
-    // Up - Up vector defines tilt of camera.  Don't change unless you are sure!!
-    up[0] = glm::vec3 (0, 1, 0);
-    up[1] = glm::vec3 (1, 0, 0);
-    up[2] = glm::vec3 (0, 1, 0);
-    up[3] = glm::vec3 (1, 0, 0);
     up[4] = glm::vec3 (1, 0, 0);
 
     // Compute Camera matrix (view)
@@ -94,12 +98,18 @@ void draw() {
     sea.draw(VP);
     for(auto ms: missile)
         ms.draw(VP);
+    for(auto pr: para)
+        pr.draw(VP);
+    for(auto cn: cannon)
+        cn.draw(VP);
     for(auto tp:tapu)
         tp.draw(VP);
     for(auto vc:volcano)
         vc.draw(VP);
+    for(auto gl:gola)
+        gl.draw(VP);
     plane.draw(VP);
-    
+
     // Dashboard
     health.draw(dashVP);
     fuel.draw(dashVP);
@@ -130,7 +140,8 @@ void tick_input(GLFWwindow *window) {
     GLfloat deg = (2*3.1415926/360.0f);
     if(f and !plane.missileTime){
         plane.missileTime = 1;
-        missile.push_back(Missile(plane.position.x, plane.position.y+5, plane.position.z, 0.5, 2));
+        glm::vec3 dir = glm::vec3(plane.ret[2][0],plane.ret[2][1],plane.ret[2][2]);
+        missile.push_back(Missile(plane.position.x, plane.position.y+5, plane.position.z, 0.05, 2.5, dir, plane.ret));
     }
     if (t and !plane.timer) {
         view = (view+1)%5;
@@ -171,10 +182,23 @@ void tick_elements() {
     sea.tick();
     for(auto &ms:missile)
         ms.tick();
+    for(auto &gl:gola)
+        gl.tick();
+    for(auto &cn:cannon){
+        cn.tick();
+        cn.dir = plane.position - cn.position;
+        cn.dir = glm::normalize(cn.dir);
+        if(!cn.timer){
+            gola.push_back(Gola(cn.position.x, cn.position.y, cn.position.z, 0.5f, 1, cn.dir,cn.rotate));
+            cn.timer = 1;
+        }
+    }
     for(auto tp:tapu)
         tp.tick();
     for(auto vc:volcano)
         vc.tick();
+    for(auto pr:para)
+        pr.tick();
     plane.tick();
     plane.health -= 0.001;
     speed.rot -= 0.1f;
@@ -192,8 +216,11 @@ void initGL(GLFWwindow *window, int width, int height) {
     fuel = Fuel(23, -28);
     speed = Speed(-23, 25);
     plane = Plane(0, -40, 0, COLOR_RED);
-    sea = Sea(0, -50.0f, 0, 100, COLOR_SEA);
+    para.push_back(Para(0, -20, -40, 5));
+    sea = Sea(0, -50.0f, 0, 1000, COLOR_SEA);
     tapu.push_back(Tapu(0, -45, -80, 8, COLOR_GREEN));
+    tapu.push_back(Tapu(45, -45, -80, 8, COLOR_GREEN));
+    cannon.push_back(Cannon(45, -45, -80, 1.0f, 8));
     volcano.push_back(Volcano(0, -42.5, -80, 5, 10));
 
     // Create and compile our GLSL program from the shaders

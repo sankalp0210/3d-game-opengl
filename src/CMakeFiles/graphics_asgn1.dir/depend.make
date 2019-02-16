@@ -11,11 +11,19 @@ CMakeFiles/graphics_asgn1.dir/color.cpp.o: main.h
 CMakeFiles/graphics_asgn1.dir/input.cpp.o: input.cpp
 CMakeFiles/graphics_asgn1.dir/input.cpp.o: main.h
 
-CMakeFiles/graphics_asgn1.dir/main.cpp.o: ball.h
+CMakeFiles/graphics_asgn1.dir/main.cpp.o: cylinder.h
+CMakeFiles/graphics_asgn1.dir/main.cpp.o: fuel.h
+CMakeFiles/graphics_asgn1.dir/main.cpp.o: health.h
 CMakeFiles/graphics_asgn1.dir/main.cpp.o: main.cpp
 CMakeFiles/graphics_asgn1.dir/main.cpp.o: main.h
-CMakeFiles/graphics_asgn1.dir/main.cpp.o: sphere.h
+CMakeFiles/graphics_asgn1.dir/main.cpp.o: missile.h
+CMakeFiles/graphics_asgn1.dir/main.cpp.o: plane.h
+CMakeFiles/graphics_asgn1.dir/main.cpp.o: score.h
+CMakeFiles/graphics_asgn1.dir/main.cpp.o: sea.h
+CMakeFiles/graphics_asgn1.dir/main.cpp.o: speed.h
+CMakeFiles/graphics_asgn1.dir/main.cpp.o: tapu.h
 CMakeFiles/graphics_asgn1.dir/main.cpp.o: timer.h
+CMakeFiles/graphics_asgn1.dir/main.cpp.o: volcano.h
 
 CMakeFiles/graphics_asgn1.dir/nonedit.cpp.o: main.h
 CMakeFiles/graphics_asgn1.dir/nonedit.cpp.o: nonedit.cpp
