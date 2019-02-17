@@ -12,6 +12,8 @@
 #include "para.h"
 #include "cannon.h"
 #include "gola.h"
+#include "alt.h"
+#include "bomb.h"
 using namespace std;
 
 GLMatrices Matrices;
@@ -28,8 +30,10 @@ vector<Volcano> volcano;
 vector<Para> para;
 vector<Gola> gola;
 vector<Cannon> cannon;
+vector<Bomb> bomb;
 Plane plane;
 Score score;
+Alt alt;
 Health health;
 Fuel fuel;
 Speed speed;
@@ -38,8 +42,11 @@ vector<Tapu> tapu;
 int view = 0;
 float camY = -15;
 float screen_zoom = 1, screen_center_x = 0, screen_center_y = 0;
-float camera_rotation_angle = 0;
-
+float camera_rotation_angle = 0, degree = 0, radiusB = 0;
+float heliX = 0, heliY = 0, heliZ = -10;
+double xpos, ypos;
+bool barrelRoll = false;
+glm::vec3 Axis;
 Timer t60(1.0 / 60);
 
 /* Render the scene with openGL */
@@ -68,17 +75,18 @@ void draw() {
     up[1] = glm::vec3 (1, 0, 0);    
     
     // plane view
-    eye[2] =  glm::vec3 (plane.position.x, plane.position.y + 2, plane.position.z-4);
-    target[2] = glm::vec3 (plane.position.x, plane.position.y - 2, plane.position.z-10);
-    up[2] = glm::vec3 (0, 1, 0);
-    
+    d1 = 2; d2 = 5; 
+    eye[2] =  glm::vec3 (plane.position.x - d2*plane.ret[2][0], plane.position.y - d2*plane.ret[2][1], plane.position.z - d2*plane.ret[2][2]);
+    target[2] = glm::vec3 (plane.position.x - 2*d2*plane.ret[2][0], plane.position.y - 2*d2*plane.ret[2][1], plane.position.z - 2*d2*plane.ret[2][2]);
+    up[2] = glm::vec3 (plane.ret[1][0], plane.ret[1][1], plane.ret[1][2]);
+
     // tower view
-    eye[3] =  glm::vec3 (plane.position.x, plane.position.y + 6, plane.position.z + 10);
+    eye[3] =  glm::vec3 (plane.position.x + 40, plane.position.y + 50, plane.position.z);
     target[3] = glm::vec3 (plane.position.x, plane.position.y, plane.position.z);
-    up[3] = glm::vec3 (1, 0, 0);
+    up[3] = glm::vec3 (-1, 0, 0);
     
     // helicopter cam view
-    eye[4] =  glm::vec3 (plane.position.x, plane.position.y + 6, plane.position.z + 10);
+    eye[4] =  glm::vec3 (plane.position.x + heliX/screen_zoom, plane.position.y + heliY/screen_zoom, plane.position.z + heliZ/screen_zoom);
     target[4] = glm::vec3 (plane.position.x, plane.position.y, plane.position.z);
     up[4] = glm::vec3 (1, 0, 0);
 
@@ -108,12 +116,15 @@ void draw() {
         vc.draw(VP);
     for(auto gl:gola)
         gl.draw(VP);
+    for(auto bm:bomb)
+        bm.draw(VP);
     plane.draw(VP);
 
     // Dashboard
     health.draw(dashVP);
     fuel.draw(dashVP);
     speed.draw(dashVP);
+    alt.draw(dashVP);
     int num = plane.score;
     int x = 1;
     while(num>0){
@@ -134,56 +145,81 @@ void tick_input(GLFWwindow *window) {
     int d = glfwGetKey(window, GLFW_KEY_D);
     int w = glfwGetKey(window, GLFW_KEY_W);
     int space = glfwGetKey(window, GLFW_KEY_SPACE);
-    int t = glfwGetKey(window, GLFW_KEY_T);
+    int v = glfwGetKey(window, GLFW_KEY_V);
     int f = glfwGetKey(window, GLFW_KEY_F);
-    // plane.rotation = glm::vec3(0,0,0);
+    int b = glfwGetKey(window, GLFW_KEY_B);
     GLfloat deg = (2*3.1415926/360.0f);
+    if(barrelRoll){
+        if(degree > 360)
+            barrelRoll = false;
+        // plane.position.x += 
+    }
+    if(!barrelRoll){
+        degree = 0;
+        radiusB = 20.0f;
+        Axis = plane.dir + radiusB*plane.up;
+        if(up){
+            plane.rotation.x = 1.0f;
+        }
+        if(down){
+            plane.rotation.x = -1.0f;
+        }
+        if(q){
+            plane.rotation.y = 1.0f;
+        }
+        if(e){
+            plane.rotation.y = -1.0f;
+        }
+        if(a){
+            plane.rotation.z = 1.0f;
+        }
+        if(d){
+            plane.rotation.z = -1.0f;
+        }
+        if(space){
+            plane.position.y += 1.0f;
+        }
+        if(w){
+            plane.speed += plane.acc;
+            plane.position.z -= plane.speed*plane.ret[2][2];
+            plane.position.y -= plane.speed*plane.ret[2][1];
+            plane.position.x -= plane.speed*plane.ret[2][0];
+            plane.score += 1;
+        }
+        plane.speed -= plane.drag;
+    }
     if(f and !plane.missileTime){
         plane.missileTime = 1;
         glm::vec3 dir = glm::vec3(plane.ret[2][0],plane.ret[2][1],plane.ret[2][2]);
-        missile.push_back(Missile(plane.position.x, plane.position.y+5, plane.position.z, 0.05, 2.5, dir, plane.ret));
+        missile.push_back(Missile(plane.position.x, plane.position.y, plane.position.z, 0.05, 2.5, dir, plane.ret));
     }
-    if (t and !plane.timer) {
+    if(b and !plane.missileTime){
+        plane.missileTime = 1;
+        glm::vec3 dir = glm::vec3(plane.ret[2][0],plane.ret[2][1],plane.ret[2][2]);
+        bomb.push_back(Bomb(plane.position.x, plane.position.y, plane.position.z, 0.5, 1, dir, plane.ret, plane.speed));
+    }
+    if (v and !plane.timer) {
         view = (view+1)%5;
         plane.timer = 1;
     }
-    if(up){
-        plane.rotation.x = 1.0f;
-    }
-    if(down){
-        plane.rotation.x = -1.0f;
-    }
-    if(q){
-        plane.rotation.y = 1.0f;
-    }
-    if(e){
-        plane.rotation.y = -1.0f;
-    }
-    if(a){
-        plane.rotation.z = 1.0f;
-    }
-    if(d){
-        plane.rotation.z = -1.0f;
-    }
-    if(space){
-        plane.position.y -= plane.speed.y;
-    }
-    if(w){
-        plane.position.z -= plane.speed.z*plane.ret[2][2];
-        plane.position.y -= plane.speed.y*plane.ret[2][1];
-        plane.position.x -= plane.speed.x*plane.ret[2][0];
-        plane.score += 1;
-    }
     sea.position.x = plane.position.x;
     sea.position.z = plane.position.z;
+    glfwGetCursorPos(window, &xpos, &ypos);
+    heliX = (xpos - 300) / 30.0f;
+    heliY = (ypos - 300) / 30.0f;
+    heliZ = sqrt(200 - heliX*heliX - heliY*heliY);
 }
 
 void tick_elements() {
+    if(plane.position.y < plane.minAlt)
+        exit(0);
     sea.tick();
     for(auto &ms:missile)
         ms.tick();
     for(auto &gl:gola)
         gl.tick();
+    for(auto &bm:bomb)
+        bm.tick();
     for(auto &cn:cannon){
         cn.tick();
         cn.dir = plane.position - cn.position;
@@ -200,10 +236,11 @@ void tick_elements() {
     for(auto pr:para)
         pr.tick();
     plane.tick();
-    plane.health -= 0.001;
-    speed.rot -= 0.1f;
+    plane.fuel -= 0.001;
+    speed.rot = 135 - plane.speed*270/plane.maxSpeed;
     health.val = plane.health;
     fuel.val = plane.fuel;
+    alt.val = plane.position.y;
 }
 
 /* Initialize the OpenGL rendering properties */
@@ -214,6 +251,7 @@ void initGL(GLFWwindow *window, int width, int height) {
     score = Score(30, 27);
     health = Health(-29, -28);
     fuel = Fuel(23, -28);
+    alt = Alt(23, -20, 105);
     speed = Speed(-23, 25);
     plane = Plane(0, -40, 0, COLOR_RED);
     para.push_back(Para(0, -20, -40, 5));

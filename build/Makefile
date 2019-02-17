@@ -123,6 +123,33 @@ graphics_asgn1/fast:
 	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/build
 .PHONY : graphics_asgn1/fast
 
+src/alt.o: src/alt.cpp.o
+
+.PHONY : src/alt.o
+
+# target to build an object file
+src/alt.cpp.o:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/alt.cpp.o
+.PHONY : src/alt.cpp.o
+
+src/alt.i: src/alt.cpp.i
+
+.PHONY : src/alt.i
+
+# target to preprocess a source file
+src/alt.cpp.i:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/alt.cpp.i
+.PHONY : src/alt.cpp.i
+
+src/alt.s: src/alt.cpp.s
+
+.PHONY : src/alt.s
+
+# target to generate assembly for a file
+src/alt.cpp.s:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/alt.cpp.s
+.PHONY : src/alt.cpp.s
+
 src/ball.o: src/ball.cpp.o
 
 .PHONY : src/ball.o
@@ -149,6 +176,33 @@ src/ball.s: src/ball.cpp.s
 src/ball.cpp.s:
 	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/ball.cpp.s
 .PHONY : src/ball.cpp.s
+
+src/bomb.o: src/bomb.cpp.o
+
+.PHONY : src/bomb.o
+
+# target to build an object file
+src/bomb.cpp.o:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/bomb.cpp.o
+.PHONY : src/bomb.cpp.o
+
+src/bomb.i: src/bomb.cpp.i
+
+.PHONY : src/bomb.i
+
+# target to preprocess a source file
+src/bomb.cpp.i:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/bomb.cpp.i
+.PHONY : src/bomb.cpp.i
+
+src/bomb.s: src/bomb.cpp.s
+
+.PHONY : src/bomb.s
+
+# target to generate assembly for a file
+src/bomb.cpp.s:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/bomb.cpp.s
+.PHONY : src/bomb.cpp.s
 
 src/cannon.o: src/cannon.cpp.o
 
@@ -726,9 +780,15 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... graphics_asgn1"
 	@echo "... edit_cache"
+	@echo "... src/alt.o"
+	@echo "... src/alt.i"
+	@echo "... src/alt.s"
 	@echo "... src/ball.o"
 	@echo "... src/ball.i"
 	@echo "... src/ball.s"
+	@echo "... src/bomb.o"
+	@echo "... src/bomb.i"
+	@echo "... src/bomb.s"
 	@echo "... src/cannon.o"
 	@echo "... src/cannon.i"
 	@echo "... src/cannon.s"

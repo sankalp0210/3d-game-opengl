@@ -8,10 +8,10 @@
 class Alt {
 public:
     Alt() {}
-    Alt(float x, float y);
+    Alt(float x, float y, float maxval);
     glm::vec3 position;
     void draw(glm::mat4 VP);
-    float val = 1.0f;
+    float val = 0, maxval = 0;
     void set_position(float x, float y ,float z);
     void tick();
 private:

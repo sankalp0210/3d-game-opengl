@@ -1,7 +1,7 @@
 #include "main.h"
 #include "plane.h"
 #include "cylinder.h"
- 
+
 Plane::Plane(float x, float y, float z, color_t color) {
 	this->ret = glm::mat4(1.0f);
 	this->color = color;
@@ -10,7 +10,6 @@ Plane::Plane(float x, float y, float z, color_t color) {
 	this->timer = 0;
 	this->set_position(x, y, z);
     this->set_rotation(0, 0, 0);
-	this->set_speed(1.1f, 1.1f, 1.1f);
 	this->ret = glm::mat4(1.0f);
 	float rBodyT = 1.0f, rBodyB = 1.0f, hBody = 5.0f;
 	float rTop = 0.1f, hTop = 3.0f;
@@ -42,9 +41,6 @@ void Plane::set_rotation(float x_rot, float y_rot, float z_rot) {
     this->rotation = glm::vec3(x_rot, y_rot, z_rot);
 }
 
-void Plane::set_speed(float x_speed, float y_speed, float z_speed) {
-	this->speed = glm::vec3(x_speed, y_speed, z_speed);
-}
 
 bool Plane::tick() {
 	if(this->timer)
@@ -55,6 +51,15 @@ bool Plane::tick() {
 		this->missileTime++;
 	if(this->missileTime > 10)
 		this->missileTime = 0;
+	if(this->position.y > this->maxAlt)
+		this->position.y = this->maxAlt;
+	if(this->speed < 0)
+		this->speed = 0;
+	if(this->speed > this->maxSpeed)
+		this->speed = this->maxSpeed;
+	this->dir[0] = this->ret[2][0];this->dir[1] = this->ret[2][0]; this->dir[2] = this->ret[2][0];
+	this->up[0] = this->ret[1][0];this->up[1] = this->ret[1][0]; this->up[2] = this->ret[1][0];
+	this->cr[0] = this->ret[0][0];this->cr[1] = this->ret[0][0]; this->cr[2] = this->ret[0][0];
 }
 
 
