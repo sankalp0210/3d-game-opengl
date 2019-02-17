@@ -14,6 +14,8 @@
 #include "gola.h"
 #include "alt.h"
 #include "bomb.h"
+#include "smoke.h"
+#include "compass.h"
 using namespace std;
 
 GLMatrices Matrices;
@@ -31,8 +33,10 @@ vector<Para> para;
 vector<Gola> gola;
 vector<Cannon> cannon;
 vector<Bomb> bomb;
+vector<Smoke> smoke;
 Plane plane;
 Score score;
+Compass compass;
 Alt alt;
 Health health;
 Fuel fuel;
@@ -88,7 +92,7 @@ void draw() {
     // helicopter cam view
     eye[4] =  glm::vec3 (plane.position.x + heliX/screen_zoom, plane.position.y + heliY/screen_zoom, plane.position.z + heliZ/screen_zoom);
     target[4] = glm::vec3 (plane.position.x, plane.position.y, plane.position.z);
-    up[4] = glm::vec3 (1, 0, 0);
+    up[4] = glm::vec3 (0, 1, 0);
 
     // Compute Camera matrix (view)
     Matrices.view = glm::lookAt( eye[view], target[view], up[view] ); // Rotating Camera for 3D
@@ -118,6 +122,8 @@ void draw() {
         gl.draw(VP);
     for(auto bm:bomb)
         bm.draw(VP);
+    for(auto sm:smoke)
+        sm.draw(VP);
     plane.draw(VP);
 
     // Dashboard
@@ -125,6 +131,7 @@ void draw() {
     fuel.draw(dashVP);
     speed.draw(dashVP);
     alt.draw(dashVP);
+    compass.draw(dashVP);
     int num = plane.score;
     int x = 1;
     while(num>0){
@@ -148,6 +155,7 @@ void tick_input(GLFWwindow *window) {
     int v = glfwGetKey(window, GLFW_KEY_V);
     int f = glfwGetKey(window, GLFW_KEY_F);
     int b = glfwGetKey(window, GLFW_KEY_B);
+    int r = glfwGetKey(window, GLFW_KEY_R);
     GLfloat deg = (2*3.1415926/360.0f);
     if(barrelRoll){
         if(degree > 360)
@@ -175,6 +183,9 @@ void tick_input(GLFWwindow *window) {
         }
         if(d){
             plane.rotation.z = -1.0f;
+        }
+        if(r){
+            barrelRoll = true;
         }
         if(space){
             plane.position.y += 1.0f;
@@ -214,6 +225,7 @@ void tick_elements() {
     if(plane.position.y < plane.minAlt)
         exit(0);
     sea.tick();
+    compass.tick(glm::vec3(plane.ret[2][0], plane.ret[2][1], plane.ret[2][2]));
     for(auto &ms:missile)
         ms.tick();
     for(auto &gl:gola)
@@ -233,7 +245,7 @@ void tick_elements() {
         tp.tick();
     for(auto vc:volcano)
         vc.tick();
-    for(auto pr:para)
+    for(auto &pr:para)
         pr.tick();
     plane.tick();
     plane.fuel -= 0.001;
@@ -252,6 +264,7 @@ void initGL(GLFWwindow *window, int width, int height) {
     health = Health(-29, -28);
     fuel = Fuel(23, -28);
     alt = Alt(23, -20, 105);
+    compass = Compass(-26, -5);
     speed = Speed(-23, 25);
     plane = Plane(0, -40, 0, COLOR_RED);
     para.push_back(Para(0, -20, -40, 5));
@@ -260,7 +273,7 @@ void initGL(GLFWwindow *window, int width, int height) {
     tapu.push_back(Tapu(45, -45, -80, 8, COLOR_GREEN));
     cannon.push_back(Cannon(45, -45, -80, 1.0f, 8));
     volcano.push_back(Volcano(0, -42.5, -80, 5, 10));
-
+    smoke.push_back(Smoke(50, 0, 0, -100, 8.0f, 7.0f, 1.0f));
     // Create and compile our GLSL program from the shaders
     programID = LoadShaders("Sample_GL.vert", "Sample_GL.frag");
     // Get a handle for our "MVP" uniform
@@ -319,10 +332,10 @@ bool detect_collision(bounding_box_t a, bounding_box_t b) {
 }
 
 void reset_screen() {
-    float top    = screen_center_y + 30 / screen_zoom;
-    float bottom = screen_center_y - 30 / screen_zoom;
-    float left   = screen_center_x - 30 / screen_zoom;
-    float right  = screen_center_x + 30 / screen_zoom;
+    float top    = screen_center_y + 30;
+    float bottom = screen_center_y - 30;
+    float left   = screen_center_x - 30;
+    float right  = screen_center_x + 30;
     Matrices.projection = glm::perspective(45.0f, (right -left)/(top-bottom), 1.0f, 500.0f);
     Dash.projection = glm::ortho(left, right, bottom, top,0.1f, 1000.0f);
 }

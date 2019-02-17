@@ -68,6 +68,16 @@ vector
 main.h
 /home/sankalp/3d-game-opengl/src/main.h
 
+/home/sankalp/3d-game-opengl/src/compass.cpp
+compass.h
+/home/sankalp/3d-game-opengl/src/compass.h
+main.h
+/home/sankalp/3d-game-opengl/src/main.h
+
+/home/sankalp/3d-game-opengl/src/compass.h
+main.h
+/home/sankalp/3d-game-opengl/src/main.h
+
 /home/sankalp/3d-game-opengl/src/cylinder.cpp
 main.h
 /home/sankalp/3d-game-opengl/src/main.h
@@ -181,6 +191,10 @@ alt.h
 /home/sankalp/3d-game-opengl/src/alt.h
 bomb.h
 /home/sankalp/3d-game-opengl/src/bomb.h
+smoke.h
+/home/sankalp/3d-game-opengl/src/smoke.h
+compass.h
+/home/sankalp/3d-game-opengl/src/compass.h
 
 /home/sankalp/3d-game-opengl/src/main.h
 iostream
@@ -319,6 +333,16 @@ cylinder.h
 /home/sankalp/3d-game-opengl/src/cylinder.h
 vector
 -
+
+/home/sankalp/3d-game-opengl/src/smoke.cpp
+main.h
+/home/sankalp/3d-game-opengl/src/main.h
+smoke.h
+/home/sankalp/3d-game-opengl/src/smoke.h
+
+/home/sankalp/3d-game-opengl/src/smoke.h
+main.h
+/home/sankalp/3d-game-opengl/src/main.h
 
 /home/sankalp/3d-game-opengl/src/speed.cpp
 speed.h

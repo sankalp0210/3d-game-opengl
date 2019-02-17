@@ -258,6 +258,33 @@ src/color.cpp.s:
 	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/color.cpp.s
 .PHONY : src/color.cpp.s
 
+src/compass.o: src/compass.cpp.o
+
+.PHONY : src/compass.o
+
+# target to build an object file
+src/compass.cpp.o:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/compass.cpp.o
+.PHONY : src/compass.cpp.o
+
+src/compass.i: src/compass.cpp.i
+
+.PHONY : src/compass.i
+
+# target to preprocess a source file
+src/compass.cpp.i:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/compass.cpp.i
+.PHONY : src/compass.cpp.i
+
+src/compass.s: src/compass.cpp.s
+
+.PHONY : src/compass.s
+
+# target to generate assembly for a file
+src/compass.cpp.s:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/compass.cpp.s
+.PHONY : src/compass.cpp.s
+
 src/cylinder.o: src/cylinder.cpp.o
 
 .PHONY : src/cylinder.o
@@ -609,6 +636,33 @@ src/sea.cpp.s:
 	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/sea.cpp.s
 .PHONY : src/sea.cpp.s
 
+src/smoke.o: src/smoke.cpp.o
+
+.PHONY : src/smoke.o
+
+# target to build an object file
+src/smoke.cpp.o:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/smoke.cpp.o
+.PHONY : src/smoke.cpp.o
+
+src/smoke.i: src/smoke.cpp.i
+
+.PHONY : src/smoke.i
+
+# target to preprocess a source file
+src/smoke.cpp.i:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/smoke.cpp.i
+.PHONY : src/smoke.cpp.i
+
+src/smoke.s: src/smoke.cpp.s
+
+.PHONY : src/smoke.s
+
+# target to generate assembly for a file
+src/smoke.cpp.s:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/smoke.cpp.s
+.PHONY : src/smoke.cpp.s
+
 src/speed.o: src/speed.cpp.o
 
 .PHONY : src/speed.o
@@ -795,6 +849,9 @@ help:
 	@echo "... src/color.o"
 	@echo "... src/color.i"
 	@echo "... src/color.s"
+	@echo "... src/compass.o"
+	@echo "... src/compass.i"
+	@echo "... src/compass.s"
 	@echo "... src/cylinder.o"
 	@echo "... src/cylinder.i"
 	@echo "... src/cylinder.s"
@@ -834,6 +891,9 @@ help:
 	@echo "... src/sea.o"
 	@echo "... src/sea.i"
 	@echo "... src/sea.s"
+	@echo "... src/smoke.o"
+	@echo "... src/smoke.i"
+	@echo "... src/smoke.s"
 	@echo "... src/speed.o"
 	@echo "... src/speed.i"
 	@echo "... src/speed.s"

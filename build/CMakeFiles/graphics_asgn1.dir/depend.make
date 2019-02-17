@@ -23,6 +23,10 @@ CMakeFiles/graphics_asgn1.dir/src/cannon.cpp.o: ../src/main.h
 CMakeFiles/graphics_asgn1.dir/src/color.cpp.o: ../src/color.cpp
 CMakeFiles/graphics_asgn1.dir/src/color.cpp.o: ../src/main.h
 
+CMakeFiles/graphics_asgn1.dir/src/compass.cpp.o: ../src/compass.cpp
+CMakeFiles/graphics_asgn1.dir/src/compass.cpp.o: ../src/compass.h
+CMakeFiles/graphics_asgn1.dir/src/compass.cpp.o: ../src/main.h
+
 CMakeFiles/graphics_asgn1.dir/src/cylinder.cpp.o: ../src/cylinder.cpp
 CMakeFiles/graphics_asgn1.dir/src/cylinder.cpp.o: ../src/cylinder.h
 CMakeFiles/graphics_asgn1.dir/src/cylinder.cpp.o: ../src/main.h
@@ -48,6 +52,7 @@ CMakeFiles/graphics_asgn1.dir/src/input.cpp.o: ../src/main.h
 CMakeFiles/graphics_asgn1.dir/src/main.cpp.o: ../src/alt.h
 CMakeFiles/graphics_asgn1.dir/src/main.cpp.o: ../src/bomb.h
 CMakeFiles/graphics_asgn1.dir/src/main.cpp.o: ../src/cannon.h
+CMakeFiles/graphics_asgn1.dir/src/main.cpp.o: ../src/compass.h
 CMakeFiles/graphics_asgn1.dir/src/main.cpp.o: ../src/cylinder.h
 CMakeFiles/graphics_asgn1.dir/src/main.cpp.o: ../src/fuel.h
 CMakeFiles/graphics_asgn1.dir/src/main.cpp.o: ../src/gola.h
@@ -59,6 +64,7 @@ CMakeFiles/graphics_asgn1.dir/src/main.cpp.o: ../src/para.h
 CMakeFiles/graphics_asgn1.dir/src/main.cpp.o: ../src/plane.h
 CMakeFiles/graphics_asgn1.dir/src/main.cpp.o: ../src/score.h
 CMakeFiles/graphics_asgn1.dir/src/main.cpp.o: ../src/sea.h
+CMakeFiles/graphics_asgn1.dir/src/main.cpp.o: ../src/smoke.h
 CMakeFiles/graphics_asgn1.dir/src/main.cpp.o: ../src/speed.h
 CMakeFiles/graphics_asgn1.dir/src/main.cpp.o: ../src/tapu.h
 CMakeFiles/graphics_asgn1.dir/src/main.cpp.o: ../src/timer.h
@@ -93,6 +99,10 @@ CMakeFiles/graphics_asgn1.dir/src/sea.cpp.o: ../src/cylinder.h
 CMakeFiles/graphics_asgn1.dir/src/sea.cpp.o: ../src/main.h
 CMakeFiles/graphics_asgn1.dir/src/sea.cpp.o: ../src/sea.cpp
 CMakeFiles/graphics_asgn1.dir/src/sea.cpp.o: ../src/sea.h
+
+CMakeFiles/graphics_asgn1.dir/src/smoke.cpp.o: ../src/main.h
+CMakeFiles/graphics_asgn1.dir/src/smoke.cpp.o: ../src/smoke.cpp
+CMakeFiles/graphics_asgn1.dir/src/smoke.cpp.o: ../src/smoke.h
 
 CMakeFiles/graphics_asgn1.dir/src/speed.cpp.o: ../src/main.h
 CMakeFiles/graphics_asgn1.dir/src/speed.cpp.o: ../src/speed.cpp
