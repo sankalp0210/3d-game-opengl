@@ -10,8 +10,7 @@ public:
     Para() {}
     Para(float x, float y, float z, float r);
     glm::vec3 position;
-    float radius = 0, angle = 0;
-    bool visible = true;
+    float radius = 0, angle = 0, speed = 0.01f;
     void draw(glm::mat4 VP);
     void set_position(float x, float y ,float z);
     void tick();

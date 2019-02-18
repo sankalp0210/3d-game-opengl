@@ -13,9 +13,8 @@ public:
     std::vector<Cylinder> parts;
     color_t color;
     float radius = 0;
-    bool visible = true;
     int timer = 0, missileTime = 0, sp = 0, score = 1, altitude = 0;
-    float health = 1, fuel = 1, maxAlt = 50.0f, minAlt = -47.0f, acc = 0.01f, maxSpeed = 2.0f, drag = 0.005f, speed = 0;
+    float health = 1, fuel = 1, maxAlt = 50.0f, minAlt = -49.0f, acc = 0.01f, maxSpeed = 2.0f, drag = 0.005f, speed = 0;
     void draw(glm::mat4 VP);
     glm::mat4 ret;
     void set_position(float x, float y ,float z);

@@ -7,6 +7,7 @@ Volcano::Volcano(float x, float y, float z, float r, float h) {
     objects.push_back(Cylinder(50, 0, 0, 0, r, r, r/2, r/2, h/2, COLOR_VOLCANO_DOWN));
     objects.push_back(Cylinder(50, 0, 0, -h/2, r/2, r/2, r/4, r/4, h/2, COLOR_VOLCANO_UP));
     this->rotation.x = 90.0f;
+    this->radius = 2*r;
 }
 
 void Volcano::set_position(float x, float y, float z) {
@@ -33,7 +34,7 @@ bounding_box_t Volcano::bounding_box() {
     	this->position.y,
     	this->position.z,
     	this->radius,
-    	this->radius,
+    	200.0f,
     	this->radius
     };
     return bbox;

@@ -16,6 +16,8 @@
 #include "bomb.h"
 #include "smoke.h"
 #include "compass.h"
+#include "fuelup.h"
+#include "arrow.h"
 using namespace std;
 
 GLMatrices Matrices;
@@ -31,9 +33,11 @@ vector<Missile> missile;
 vector<Volcano> volcano;
 vector<Para> para;
 vector<Gola> gola;
-vector<Cannon> cannon;
+Cannon cannon;
+Arrow arrow;
 vector<Bomb> bomb;
 vector<Smoke> smoke;
+vector<Fuelup> fuelup;
 Plane plane;
 Score score;
 Compass compass;
@@ -112,8 +116,8 @@ void draw() {
         ms.draw(VP);
     for(auto pr: para)
         pr.draw(VP);
-    for(auto cn: cannon)
-        cn.draw(VP);
+    cannon.draw(VP);
+    arrow.draw(VP);
     for(auto tp:tapu)
         tp.draw(VP);
     for(auto vc:volcano)
@@ -124,6 +128,8 @@ void draw() {
         bm.draw(VP);
     for(auto sm:smoke)
         sm.draw(VP);
+    for(auto fu:fuelup)
+        fu.draw(VP);
     plane.draw(VP);
 
     // Dashboard
@@ -195,7 +201,6 @@ void tick_input(GLFWwindow *window) {
             plane.position.z -= plane.speed*plane.ret[2][2];
             plane.position.y -= plane.speed*plane.ret[2][1];
             plane.position.x -= plane.speed*plane.ret[2][0];
-            plane.score += 1;
         }
         plane.speed -= plane.drag;
     }
@@ -222,7 +227,7 @@ void tick_input(GLFWwindow *window) {
 }
 
 void tick_elements() {
-    if(plane.position.y < plane.minAlt)
+    if(plane.position.y < plane.minAlt or plane.fuel <= 0 or plane.health <= 0)
         exit(0);
     sea.tick();
     compass.tick(glm::vec3(plane.ret[2][0], plane.ret[2][1], plane.ret[2][2]));
@@ -232,23 +237,32 @@ void tick_elements() {
         gl.tick();
     for(auto &bm:bomb)
         bm.tick();
-    for(auto &cn:cannon){
-        cn.tick();
-        cn.dir = plane.position - cn.position;
-        cn.dir = glm::normalize(cn.dir);
-        if(!cn.timer){
-            gola.push_back(Gola(cn.position.x, cn.position.y, cn.position.z, 0.5f, 1, cn.dir,cn.rotate));
-            cn.timer = 1;
-        }
+    // cannon tick
+    cannon.tick();
+    cannon.dir = plane.position - cannon.position;
+    cannon.dir = glm::normalize(cannon.dir);
+    if(!cannon.timer){
+        gola.push_back(Gola(cannon.position.x, cannon.position.y, cannon.position.z, 0.5f, 1, cannon.dir,cannon.rotate));
+        cannon.timer = 1;
     }
+
+    // arrow  tick
+    arrow.dir = plane.position - cannon.position;
+    arrow.dir = glm::normalize(arrow.dir);
+    arrow.position = plane.position;
+    arrow.position.y += 4.0f;
+    arrow.position.z += 6.0f*plane.dir[2];
+
     for(auto tp:tapu)
         tp.tick();
     for(auto vc:volcano)
         vc.tick();
     for(auto &pr:para)
         pr.tick();
+    for(auto &sm:smoke)
+        sm.tick();
     plane.tick();
-    plane.fuel -= 0.001;
+    plane.fuel -= 0.0001;
     speed.rot = 135 - plane.speed*270/plane.maxSpeed;
     health.val = plane.health;
     fuel.val = plane.fuel;
@@ -266,14 +280,17 @@ void initGL(GLFWwindow *window, int width, int height) {
     alt = Alt(23, -20, 105);
     compass = Compass(-26, -5);
     speed = Speed(-23, 25);
+
     plane = Plane(0, -40, 0, COLOR_RED);
     para.push_back(Para(0, -20, -40, 5));
     sea = Sea(0, -50.0f, 0, 1000, COLOR_SEA);
-    tapu.push_back(Tapu(0, -45, -80, 8, COLOR_GREEN));
-    tapu.push_back(Tapu(45, -45, -80, 8, COLOR_GREEN));
-    cannon.push_back(Cannon(45, -45, -80, 1.0f, 8));
-    volcano.push_back(Volcano(0, -42.5, -80, 5, 10));
+    tapu.push_back(Tapu(0, -49.5, -80, 8, COLOR_GREEN));
+    tapu.push_back(Tapu(45, -49.5, -80, 8, COLOR_GREEN));
+    cannon = Cannon(45, -49.5, -80, 1.0f, 8);
+    arrow = Arrow(0, -37.5, 0, 1.0f, 2.0f);
+    volcano.push_back(Volcano(0, -47, -80, 5, 10));
     smoke.push_back(Smoke(50, 0, 0, -100, 8.0f, 7.0f, 1.0f));
+    fuelup.push_back(Fuelup(50, 0, -50, 3, 2));
     // Create and compile our GLSL program from the shaders
     programID = LoadShaders("Sample_GL.vert", "Sample_GL.frag");
     // Get a handle for our "MVP" uniform
@@ -295,6 +312,118 @@ void initGL(GLFWwindow *window, int width, int height) {
     cout << "GLSL: " << glGetString(GL_SHADING_LANGUAGE_VERSION) << endl;
 }
 
+void checkColissions()
+{
+    // colission of missile with gola
+    for(int i=0;i<missile.size();i++){
+        int flag = 0;
+        for(int j=0;j<gola.size();j++){
+            if(detect_collision(missile[i].bounding_box(), gola[j].bounding_box())){
+                flag = 1;
+                gola.erase(gola.begin() + j);
+                plane.score += 5;
+                break;
+            }
+        }
+        if(flag){
+            missile.erase(missile.begin() + i);
+            break;
+        }
+    }
+
+    // colission of missile with parachute
+    for(int i=0;i<missile.size();i++){
+        int flag = 0;
+        for(int j=0;j<para.size();j++){
+            if(detect_collision(missile[i].bounding_box(), para[j].bounding_box())){
+                flag = 1;
+                para[j].speed += 0.15f;
+                plane.score += 10;
+                break;
+            }
+        }
+        if(flag){
+            missile.erase(missile.begin() + i);
+            break;
+        }
+    }
+
+    // colission of bomb with parachute
+    for(int i=0;i<bomb.size();i++){
+        int flag = 0;
+        for(int j=0;j<para.size();j++){
+            if(detect_collision(bomb[i].bounding_box(), para[j].bounding_box())){
+                flag = 1;
+                para[j].speed += 0.15f;
+                plane.score += 10;
+                break;
+            }
+        }
+        if(flag){
+            bomb.erase(bomb.begin() + i);
+            break;
+        }
+    }
+
+    // colission of bomb with cannon
+    for(int i=0;i<bomb.size();i++){
+        if(detect_collision(bomb[i].bounding_box(), cannon.bounding_box())){
+            cannon.position.z -= 200.0f;
+            tapu.push_back(Tapu(cannon.position.x, cannon.position.y, cannon.position.z, 8, COLOR_GREEN));
+            plane.score += 100;
+            bomb.erase(bomb.begin() + i);
+            break;
+        }
+    }
+
+    // colission of gola with plane
+    for(int i=0;i<gola.size();i++){
+        if(detect_collision(plane.bounding_box(),gola[i].bounding_box())){
+            gola.erase(gola.begin() + i);
+            plane.health -= 0.1f;
+            break;
+        }
+    }
+
+    // colission of plane with smoke rings
+    for(int i=0;i<smoke.size();i++){
+        if(detect_collision(plane.bounding_box(), smoke[i].bounding_box())){
+            if(smoke[i].timer)
+                break;
+            plane.score += 50;
+            smoke[i].timer = 1;
+            break;
+        }
+    }
+
+    // colission of plane with parachute
+    for(int j=0;j<para.size();j++){
+        if(detect_collision(plane.bounding_box(), para[j].bounding_box())){
+            para[j].speed += 0.15f;
+            plane.health -= 0.05f;
+            break;
+        }
+    }
+
+    // colission of plane with volcanoes
+    for(int j=0;j<volcano.size();j++){
+        if(detect_collision(plane.bounding_box(), volcano[j].bounding_box())){
+            plane.health = 0.0f;
+            break;
+        }
+    }
+
+    // colission of plane with mountains
+
+    // colission of plane with fuel ups
+    for(int j=0;j<fuelup.size();j++){
+        if(detect_collision(plane.bounding_box(), fuelup[j].bounding_box())){
+            fuelup.erase(fuelup.begin()+j);
+            plane.fuel = 1.00f;
+            break;
+        }
+    }
+}
 
 int main(int argc, char **argv) {
     srand(time(0));
@@ -310,11 +439,11 @@ int main(int argc, char **argv) {
         // Process timers
         if (t60.processTick()) {
             // 60 fps
-            // OpenGL Draw commands
+                // OpenGL Draw commands
             draw();
             // Swap Frame Buffer in double buffering
             glfwSwapBuffers(window);
-
+            checkColissions();
             tick_elements();
             tick_input(window);
         }
@@ -328,7 +457,8 @@ int main(int argc, char **argv) {
 
 bool detect_collision(bounding_box_t a, bounding_box_t b) {
     return (abs(a.x - b.x) * 2 < (a.width + b.width)) &&
-           (abs(a.y - b.y) * 2 < (a.height + b.height));
+           (abs(a.y - b.y) * 2 < (a.height + b.height)) &&
+           (abs(a.z - b.z) * 2 < (a.depth + b.depth)) ;
 }
 
 void reset_screen() {

@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/graphics_asgn1.dir/src/alt.cpp.o"
+  "CMakeFiles/graphics_asgn1.dir/src/arrow.cpp.o"
   "CMakeFiles/graphics_asgn1.dir/src/ball.cpp.o"
   "CMakeFiles/graphics_asgn1.dir/src/bomb.cpp.o"
   "CMakeFiles/graphics_asgn1.dir/src/cannon.cpp.o"
@@ -7,6 +8,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/graphics_asgn1.dir/src/compass.cpp.o"
   "CMakeFiles/graphics_asgn1.dir/src/cylinder.cpp.o"
   "CMakeFiles/graphics_asgn1.dir/src/fuel.cpp.o"
+  "CMakeFiles/graphics_asgn1.dir/src/fuelup.cpp.o"
   "CMakeFiles/graphics_asgn1.dir/src/gola.cpp.o"
   "CMakeFiles/graphics_asgn1.dir/src/health.cpp.o"
   "CMakeFiles/graphics_asgn1.dir/src/input.cpp.o"
@@ -20,7 +22,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/graphics_asgn1.dir/src/sea.cpp.o"
   "CMakeFiles/graphics_asgn1.dir/src/smoke.cpp.o"
   "CMakeFiles/graphics_asgn1.dir/src/speed.cpp.o"
-  "CMakeFiles/graphics_asgn1.dir/src/sphere.cpp.o"
   "CMakeFiles/graphics_asgn1.dir/src/tapu.cpp.o"
   "CMakeFiles/graphics_asgn1.dir/src/timer.cpp.o"
   "CMakeFiles/graphics_asgn1.dir/src/triangle.cpp.o"

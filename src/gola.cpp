@@ -8,6 +8,7 @@ Gola::Gola(float x, float y, float z, float r, float h, glm::vec3 dir, glm::mat4
 	this->set_position(x, y, z);
     objects.push_back(Cylinder(50, 0, 0, 0, r, r, r, r, 3*h/4, COLOR_BLACK));
     objects.push_back(Cylinder(50, 0, 0, -h/2, r, r, 0, 0, h/4, COLOR_BLACK));
+    this->radius = h;
 }
 
 void Gola::set_position(float x, float y, float z) {

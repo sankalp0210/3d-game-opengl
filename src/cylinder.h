@@ -10,7 +10,6 @@ public:
     glm::vec3 position, speed, rotation;
     color_t color;
     float radius = 0;
-    bool visible = true;
     void draw(glm::mat4 VP);
     void set_position(float x, float y ,float z);
     void set_speed(float x_speed, float y_speed, float z_speed);

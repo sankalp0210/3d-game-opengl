@@ -9,7 +9,7 @@ public:
     Smoke(int n, float x, float y, float z, float r1, float r2, float h);
     glm::vec3 position, rotation;
     float radius = 0;
-    bool visible = true;
+    int timer = 0;
     void draw(glm::mat4 VP);
     void set_position(float x, float y ,float z);
     void set_rotation(float x_rot, float y_rot, float z_rot);

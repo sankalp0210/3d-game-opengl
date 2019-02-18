@@ -2,7 +2,7 @@
 #include "smoke.h"
 
 Smoke::Smoke(int n, float x, float y, float z, float r1, float r2, float h) {
-	this->radius = radius;
+	this->radius = r1 / 3;
 	this->set_position(x, y, z);
     this->set_rotation(0, 0, 0);
     GLfloat vertex_buffer_data[2*9*n+100];
@@ -50,6 +50,10 @@ void Smoke::set_rotation(float x_rot, float y_rot, float z_rot) {
 
 
 bool Smoke::tick() {
+	if(this->timer)
+		this->timer++;
+	if(this->timer > 120)
+		this->timer = 0;
 }
 
 

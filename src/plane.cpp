@@ -5,7 +5,6 @@
 Plane::Plane(float x, float y, float z, color_t color) {
 	this->ret = glm::mat4(1.0f);
 	this->color = color;
-	this->radius = radius;
 	this->missileTime = 0;
 	this->timer = 0;
 	this->set_position(x, y, z);
@@ -16,7 +15,6 @@ Plane::Plane(float x, float y, float z, color_t color) {
 	float rBot = 1.5f, hBot = 2.0f;
 	parts.push_back(Cylinder( 50, 0, 0, 0, rBodyT, rBodyT, rBodyB, rBodyB, hBody, color));
 	parts.push_back(Cylinder( 50, 0, 0,-(hBody+hTop)/2, rBodyT, rBodyT, rTop, rTop, hTop, color));
-	// parts.push_back(Cylinder(50, 0, 0, -(hBody+hBot)/2, rBody, rBody, rBot, rBot, hBot, color));
     float var1 = x + rBot/2;
     float var2 = x - rBot/2;
 	float wing = 3.0f;
@@ -30,7 +28,7 @@ Plane::Plane(float x, float y, float z, color_t color) {
     	var2-wing, 0, z+2,
     };
     this->object1 = create3DObject(GL_TRIANGLES, 2*3, vertex_buffer_data1, COLOR_BLACK, GL_FILL);
-    // this->object2 = create3DObject(GL_TRIANGLES, 2*3, vertex_buffer_data2, color, GL_FILL);
+	this->radius = hTop + hBody;
 }
 
 void Plane::set_position(float x, float y, float z) {

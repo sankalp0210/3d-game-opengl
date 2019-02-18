@@ -34,16 +34,3 @@ void Tapu::draw(glm::mat4 VP) {
     glUniformMatrix4fv(Matrices.MatrixID, 1, GL_FALSE, &MVP[0][0]);
     draw3DObject(this->object);
 }
-
-
-bounding_box_t Tapu::bounding_box() {
-    bounding_box_t bbox = {
-    	this->position.x,
-    	this->position.y,
-    	this->position.z,
-    	this->radius,
-    	this->radius,
-    	this->radius
-    };
-    return bbox;
-}

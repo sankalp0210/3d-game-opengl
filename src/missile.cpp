@@ -8,6 +8,7 @@ Missile::Missile(float x, float y, float z, float r, float h, glm::vec3 dir, glm
 	this->set_position(x, y, z);
     objects.push_back(Cylinder(50, 0, 0, 0, r, r, r, r, 3*h/4, COLOR_MISSILE));
     objects.push_back(Cylinder(50, 0, 0, -h/2, r, r, 0, 0, h/4, COLOR_MISSILE));
+    this->radius = h;
 }
 
 void Missile::set_position(float x, float y, float z) {

@@ -6,6 +6,11 @@ CMakeFiles/graphics_asgn1.dir/src/alt.cpp.o: ../src/alt.h
 CMakeFiles/graphics_asgn1.dir/src/alt.cpp.o: ../src/cylinder.h
 CMakeFiles/graphics_asgn1.dir/src/alt.cpp.o: ../src/main.h
 
+CMakeFiles/graphics_asgn1.dir/src/arrow.cpp.o: ../src/arrow.cpp
+CMakeFiles/graphics_asgn1.dir/src/arrow.cpp.o: ../src/arrow.h
+CMakeFiles/graphics_asgn1.dir/src/arrow.cpp.o: ../src/cylinder.h
+CMakeFiles/graphics_asgn1.dir/src/arrow.cpp.o: ../src/main.h
+
 CMakeFiles/graphics_asgn1.dir/src/ball.cpp.o: ../src/ball.cpp
 CMakeFiles/graphics_asgn1.dir/src/ball.cpp.o: ../src/ball.h
 CMakeFiles/graphics_asgn1.dir/src/ball.cpp.o: ../src/main.h
@@ -36,6 +41,11 @@ CMakeFiles/graphics_asgn1.dir/src/fuel.cpp.o: ../src/fuel.cpp
 CMakeFiles/graphics_asgn1.dir/src/fuel.cpp.o: ../src/fuel.h
 CMakeFiles/graphics_asgn1.dir/src/fuel.cpp.o: ../src/main.h
 
+CMakeFiles/graphics_asgn1.dir/src/fuelup.cpp.o: ../src/cylinder.h
+CMakeFiles/graphics_asgn1.dir/src/fuelup.cpp.o: ../src/fuelup.cpp
+CMakeFiles/graphics_asgn1.dir/src/fuelup.cpp.o: ../src/fuelup.h
+CMakeFiles/graphics_asgn1.dir/src/fuelup.cpp.o: ../src/main.h
+
 CMakeFiles/graphics_asgn1.dir/src/gola.cpp.o: ../src/cylinder.h
 CMakeFiles/graphics_asgn1.dir/src/gola.cpp.o: ../src/gola.cpp
 CMakeFiles/graphics_asgn1.dir/src/gola.cpp.o: ../src/gola.h
@@ -50,11 +60,13 @@ CMakeFiles/graphics_asgn1.dir/src/input.cpp.o: ../src/input.cpp
 CMakeFiles/graphics_asgn1.dir/src/input.cpp.o: ../src/main.h
 
 CMakeFiles/graphics_asgn1.dir/src/main.cpp.o: ../src/alt.h
+CMakeFiles/graphics_asgn1.dir/src/main.cpp.o: ../src/arrow.h
 CMakeFiles/graphics_asgn1.dir/src/main.cpp.o: ../src/bomb.h
 CMakeFiles/graphics_asgn1.dir/src/main.cpp.o: ../src/cannon.h
 CMakeFiles/graphics_asgn1.dir/src/main.cpp.o: ../src/compass.h
 CMakeFiles/graphics_asgn1.dir/src/main.cpp.o: ../src/cylinder.h
 CMakeFiles/graphics_asgn1.dir/src/main.cpp.o: ../src/fuel.h
+CMakeFiles/graphics_asgn1.dir/src/main.cpp.o: ../src/fuelup.h
 CMakeFiles/graphics_asgn1.dir/src/main.cpp.o: ../src/gola.h
 CMakeFiles/graphics_asgn1.dir/src/main.cpp.o: ../src/health.h
 CMakeFiles/graphics_asgn1.dir/src/main.cpp.o: ../src/main.cpp
@@ -107,10 +119,6 @@ CMakeFiles/graphics_asgn1.dir/src/smoke.cpp.o: ../src/smoke.h
 CMakeFiles/graphics_asgn1.dir/src/speed.cpp.o: ../src/main.h
 CMakeFiles/graphics_asgn1.dir/src/speed.cpp.o: ../src/speed.cpp
 CMakeFiles/graphics_asgn1.dir/src/speed.cpp.o: ../src/speed.h
-
-CMakeFiles/graphics_asgn1.dir/src/sphere.cpp.o: ../src/main.h
-CMakeFiles/graphics_asgn1.dir/src/sphere.cpp.o: ../src/sphere.cpp
-CMakeFiles/graphics_asgn1.dir/src/sphere.cpp.o: ../src/sphere.h
 
 CMakeFiles/graphics_asgn1.dir/src/tapu.cpp.o: ../src/cylinder.h
 CMakeFiles/graphics_asgn1.dir/src/tapu.cpp.o: ../src/main.h

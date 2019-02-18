@@ -12,7 +12,6 @@ public:
     glm::vec3 position, rotation, dir;
     glm::mat4 rotate;
     float radius = 0;
-    bool visible = true;
     void draw(glm::mat4 VP);
     void set_position(float x, float y ,float z);
     void tick();

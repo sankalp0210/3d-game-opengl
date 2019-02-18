@@ -150,6 +150,33 @@ src/alt.cpp.s:
 	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/alt.cpp.s
 .PHONY : src/alt.cpp.s
 
+src/arrow.o: src/arrow.cpp.o
+
+.PHONY : src/arrow.o
+
+# target to build an object file
+src/arrow.cpp.o:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/arrow.cpp.o
+.PHONY : src/arrow.cpp.o
+
+src/arrow.i: src/arrow.cpp.i
+
+.PHONY : src/arrow.i
+
+# target to preprocess a source file
+src/arrow.cpp.i:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/arrow.cpp.i
+.PHONY : src/arrow.cpp.i
+
+src/arrow.s: src/arrow.cpp.s
+
+.PHONY : src/arrow.s
+
+# target to generate assembly for a file
+src/arrow.cpp.s:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/arrow.cpp.s
+.PHONY : src/arrow.cpp.s
+
 src/ball.o: src/ball.cpp.o
 
 .PHONY : src/ball.o
@@ -338,6 +365,33 @@ src/fuel.s: src/fuel.cpp.s
 src/fuel.cpp.s:
 	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/fuel.cpp.s
 .PHONY : src/fuel.cpp.s
+
+src/fuelup.o: src/fuelup.cpp.o
+
+.PHONY : src/fuelup.o
+
+# target to build an object file
+src/fuelup.cpp.o:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/fuelup.cpp.o
+.PHONY : src/fuelup.cpp.o
+
+src/fuelup.i: src/fuelup.cpp.i
+
+.PHONY : src/fuelup.i
+
+# target to preprocess a source file
+src/fuelup.cpp.i:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/fuelup.cpp.i
+.PHONY : src/fuelup.cpp.i
+
+src/fuelup.s: src/fuelup.cpp.s
+
+.PHONY : src/fuelup.s
+
+# target to generate assembly for a file
+src/fuelup.cpp.s:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/fuelup.cpp.s
+.PHONY : src/fuelup.cpp.s
 
 src/gola.o: src/gola.cpp.o
 
@@ -690,33 +744,6 @@ src/speed.cpp.s:
 	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/speed.cpp.s
 .PHONY : src/speed.cpp.s
 
-src/sphere.o: src/sphere.cpp.o
-
-.PHONY : src/sphere.o
-
-# target to build an object file
-src/sphere.cpp.o:
-	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/sphere.cpp.o
-.PHONY : src/sphere.cpp.o
-
-src/sphere.i: src/sphere.cpp.i
-
-.PHONY : src/sphere.i
-
-# target to preprocess a source file
-src/sphere.cpp.i:
-	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/sphere.cpp.i
-.PHONY : src/sphere.cpp.i
-
-src/sphere.s: src/sphere.cpp.s
-
-.PHONY : src/sphere.s
-
-# target to generate assembly for a file
-src/sphere.cpp.s:
-	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/sphere.cpp.s
-.PHONY : src/sphere.cpp.s
-
 src/tapu.o: src/tapu.cpp.o
 
 .PHONY : src/tapu.o
@@ -837,6 +864,9 @@ help:
 	@echo "... src/alt.o"
 	@echo "... src/alt.i"
 	@echo "... src/alt.s"
+	@echo "... src/arrow.o"
+	@echo "... src/arrow.i"
+	@echo "... src/arrow.s"
 	@echo "... src/ball.o"
 	@echo "... src/ball.i"
 	@echo "... src/ball.s"
@@ -858,6 +888,9 @@ help:
 	@echo "... src/fuel.o"
 	@echo "... src/fuel.i"
 	@echo "... src/fuel.s"
+	@echo "... src/fuelup.o"
+	@echo "... src/fuelup.i"
+	@echo "... src/fuelup.s"
 	@echo "... src/gola.o"
 	@echo "... src/gola.i"
 	@echo "... src/gola.s"
@@ -897,9 +930,6 @@ help:
 	@echo "... src/speed.o"
 	@echo "... src/speed.i"
 	@echo "... src/speed.s"
-	@echo "... src/sphere.o"
-	@echo "... src/sphere.i"
-	@echo "... src/sphere.s"
 	@echo "... src/tapu.o"
 	@echo "... src/tapu.i"
 	@echo "... src/tapu.s"

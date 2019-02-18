@@ -1,26 +1,22 @@
 #include "main.h"
-#include "cannon.h"
+#include "arrow.h"
 #include "cylinder.h"
 
-Cannon::Cannon(float x, float y, float z, float r, float h) {
+Arrow::Arrow(float x, float y, float z, float r, float h) {
     this->rotate = glm::mat4(1.0f);
 	this->set_position(x, y, z);
-    objects.push_back(Cylinder(50, 0, 0, 0, r, r, r, r, h, COLOR_BLACK));
-    this->radius = 2*h;
+    objects.push_back(Cylinder(50, 0, 0,     0, r, r/4, r, r/4, 3*h/4, {200, 0, 0}));
+    objects.push_back(Cylinder(50, 0, 0, -h/2, 3*r/2, r/4, 0, 0, h/4, {250, 0, 0}));
 }
 
-void Cannon::set_position(float x, float y, float z) {
+void Arrow::set_position(float x, float y, float z) {
 	this->position = glm::vec3(x, y, z);
 }
 
-void Cannon::tick() {
-    if(this->timer)
-        this->timer++;
-    if(this->timer > 60)
-        this->timer = 0;
+void Arrow::tick() {
 }
 
-void Cannon::draw(glm::mat4 VP) {
+void Arrow::draw(glm::mat4 VP) {
 	Matrices.model = glm::mat4(1.0f);
     glm::vec3 th = glm::cross(this->dir, glm::vec3(this->dir[1], -this->dir[0], 0));
     this->rotate[2][0] = this->dir[0];this->rotate[2][1] = this->dir[1];this->rotate[2][2] = this->dir[2];
@@ -33,16 +29,4 @@ void Cannon::draw(glm::mat4 VP) {
     glUniformMatrix4fv(Matrices.MatrixID, 1, GL_FALSE, &MVP[0][0]);
     for(auto ob:objects)
         ob.draw(MVP);
-}
-
-bounding_box_t Cannon::bounding_box() {
-    bounding_box_t bbox = {
-    	this->position.x,
-    	this->position.y,
-    	this->position.z,
-    	this->radius,
-    	this->radius,
-    	this->radius
-    };
-    return bbox;
 }

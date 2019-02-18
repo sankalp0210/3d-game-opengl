@@ -26,7 +26,7 @@ Para::Para(float x, float y, float z, float r) {
          0,  0, r,
     };
     this->obj = create3DObject(GL_TRIANGLES, 2*3,vertex_buffer_data, {0, 0, 0}, GL_FILL);
-
+    this->radius = r;
     this->angle = 90.0f;
 }
 
@@ -35,7 +35,7 @@ void Para::set_position(float x, float y, float z) {
 }
 
 void Para::tick() {
-    this->position.y -= 0.01f;
+    this->position.y -= this->speed;
 }
 void Para::draw(glm::mat4 VP) {
 	Matrices.model = glm::mat4(1.0f);

@@ -6,6 +6,11 @@ CMakeFiles/graphics_asgn1.dir/src/alt.cpp.o
  /home/sankalp/3d-game-opengl/src/alt.h
  /home/sankalp/3d-game-opengl/src/cylinder.h
  /home/sankalp/3d-game-opengl/src/main.h
+CMakeFiles/graphics_asgn1.dir/src/arrow.cpp.o
+ /home/sankalp/3d-game-opengl/src/arrow.cpp
+ /home/sankalp/3d-game-opengl/src/arrow.h
+ /home/sankalp/3d-game-opengl/src/cylinder.h
+ /home/sankalp/3d-game-opengl/src/main.h
 CMakeFiles/graphics_asgn1.dir/src/ball.cpp.o
  /home/sankalp/3d-game-opengl/src/ball.cpp
  /home/sankalp/3d-game-opengl/src/ball.h
@@ -36,6 +41,11 @@ CMakeFiles/graphics_asgn1.dir/src/fuel.cpp.o
  /home/sankalp/3d-game-opengl/src/fuel.cpp
  /home/sankalp/3d-game-opengl/src/fuel.h
  /home/sankalp/3d-game-opengl/src/main.h
+CMakeFiles/graphics_asgn1.dir/src/fuelup.cpp.o
+ /home/sankalp/3d-game-opengl/src/cylinder.h
+ /home/sankalp/3d-game-opengl/src/fuelup.cpp
+ /home/sankalp/3d-game-opengl/src/fuelup.h
+ /home/sankalp/3d-game-opengl/src/main.h
 CMakeFiles/graphics_asgn1.dir/src/gola.cpp.o
  /home/sankalp/3d-game-opengl/src/cylinder.h
  /home/sankalp/3d-game-opengl/src/gola.cpp
@@ -51,11 +61,13 @@ CMakeFiles/graphics_asgn1.dir/src/input.cpp.o
  /home/sankalp/3d-game-opengl/src/main.h
 CMakeFiles/graphics_asgn1.dir/src/main.cpp.o
  /home/sankalp/3d-game-opengl/src/alt.h
+ /home/sankalp/3d-game-opengl/src/arrow.h
  /home/sankalp/3d-game-opengl/src/bomb.h
  /home/sankalp/3d-game-opengl/src/cannon.h
  /home/sankalp/3d-game-opengl/src/compass.h
  /home/sankalp/3d-game-opengl/src/cylinder.h
  /home/sankalp/3d-game-opengl/src/fuel.h
+ /home/sankalp/3d-game-opengl/src/fuelup.h
  /home/sankalp/3d-game-opengl/src/gola.h
  /home/sankalp/3d-game-opengl/src/health.h
  /home/sankalp/3d-game-opengl/src/main.cpp
@@ -108,10 +120,6 @@ CMakeFiles/graphics_asgn1.dir/src/speed.cpp.o
  /home/sankalp/3d-game-opengl/src/main.h
  /home/sankalp/3d-game-opengl/src/speed.cpp
  /home/sankalp/3d-game-opengl/src/speed.h
-CMakeFiles/graphics_asgn1.dir/src/sphere.cpp.o
- /home/sankalp/3d-game-opengl/src/main.h
- /home/sankalp/3d-game-opengl/src/sphere.cpp
- /home/sankalp/3d-game-opengl/src/sphere.h
 CMakeFiles/graphics_asgn1.dir/src/tapu.cpp.o
  /home/sankalp/3d-game-opengl/src/cylinder.h
  /home/sankalp/3d-game-opengl/src/main.h
