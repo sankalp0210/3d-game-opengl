@@ -4,6 +4,7 @@
 #include "sea.h"
 #include "tapu.h"
 #include "volcano.h"
+#include "mount.h"
 #include "missile.h"
 #include "score.h"
 #include "health.h"
@@ -31,6 +32,7 @@ GLFWwindow *window;
 
 vector<Missile> missile;
 vector<Volcano> volcano;
+vector<Mount> mount;
 vector<Para> para;
 vector<Gola> gola;
 Cannon cannon;
@@ -52,9 +54,11 @@ float camY = -15;
 float screen_zoom = 1, screen_center_x = 0, screen_center_y = 0;
 float camera_rotation_angle = 0, degree = 0, radiusB = 0;
 float heliX = 0, heliY = 0, heliZ = -10;
+float aimX = 0, aimY = 0, aimZ = -10;
 double xpos, ypos;
-bool barrelRoll = false;
+bool barrelRoll = false, pause = false;
 glm::vec3 Axis;
+bool launchMissile = false, launchBomb = false;
 Timer t60(1.0 / 60);
 
 /* Render the scene with openGL */
@@ -98,6 +102,10 @@ void draw() {
     target[4] = glm::vec3 (plane.position.x, plane.position.y, plane.position.z);
     up[4] = glm::vec3 (0, 1, 0);
 
+    arrow.position.x = target[view][0];
+    arrow.position.y = target[view][1]+2;
+    arrow.position.z = target[view][2];
+
     // Compute Camera matrix (view)
     Matrices.view = glm::lookAt( eye[view], target[view], up[view] ); // Rotating Camera for 3D
     Dash.view = glm::lookAt(glm::vec3(0,0,1), glm::vec3(0,0,0), glm::vec3(0,1,0));
@@ -122,6 +130,8 @@ void draw() {
         tp.draw(VP);
     for(auto vc:volcano)
         vc.draw(VP);
+    for(auto mt:mount)
+        mt.draw(VP);
     for(auto gl:gola)
         gl.draw(VP);
     for(auto bm:bomb)
@@ -162,6 +172,10 @@ void tick_input(GLFWwindow *window) {
     int f = glfwGetKey(window, GLFW_KEY_F);
     int b = glfwGetKey(window, GLFW_KEY_B);
     int r = glfwGetKey(window, GLFW_KEY_R);
+    int p = glfwGetKey(window, GLFW_KEY_P);
+    if(p){
+        pause = true;
+    }
     GLfloat deg = (2*3.1415926/360.0f);
     if(barrelRoll){
         if(degree > 360)
@@ -204,12 +218,17 @@ void tick_input(GLFWwindow *window) {
         }
         plane.speed -= plane.drag;
     }
-    if(f and !plane.missileTime){
+    if((f and !plane.missileTime) or launchMissile){
+        system("aplay -c 1 -t wav -q ../sound/missile.wav&");
         plane.missileTime = 1;
+        launchMissile = false;
+        // glm::vec3 dir = glm::vec3(plane.ret[2][0] - aimX, plane.ret[2][1] - aimY, plane.ret[2][2] - aimZ);
         glm::vec3 dir = glm::vec3(plane.ret[2][0],plane.ret[2][1],plane.ret[2][2]);
+        dir = glm::normalize(dir);
         missile.push_back(Missile(plane.position.x, plane.position.y, plane.position.z, 0.05, 2.5, dir, plane.ret));
     }
-    if(b and !plane.missileTime){
+    if((b and !plane.missileTime) or launchBomb){
+        launchBomb = false;
         plane.missileTime = 1;
         glm::vec3 dir = glm::vec3(plane.ret[2][0],plane.ret[2][1],plane.ret[2][2]);
         bomb.push_back(Bomb(plane.position.x, plane.position.y, plane.position.z, 0.5, 1, dir, plane.ret, plane.speed));
@@ -240,8 +259,9 @@ void tick_elements() {
     // cannon tick
     cannon.tick();
     cannon.dir = plane.position - cannon.position;
+    float dis = glm::distance(plane.position, cannon.position);
     cannon.dir = glm::normalize(cannon.dir);
-    if(!cannon.timer){
+    if(!cannon.timer and dis < 250.0f){
         gola.push_back(Gola(cannon.position.x, cannon.position.y, cannon.position.z, 0.5f, 1, cannon.dir,cannon.rotate));
         cannon.timer = 1;
     }
@@ -250,8 +270,6 @@ void tick_elements() {
     arrow.dir = plane.position - cannon.position;
     arrow.dir = glm::normalize(arrow.dir);
     arrow.position = plane.position;
-    arrow.position.y += 4.0f;
-    arrow.position.z += 6.0f*plane.dir[2];
 
     for(auto tp:tapu)
         tp.tick();
@@ -269,11 +287,71 @@ void tick_elements() {
     alt.val = plane.position.y;
 }
 
+void generateNewObjects()
+{
+    float posY = 0;
+    float posX = 0;
+    float posZ = plane.position.z - 100.0f;
+    float as = plane.position.x - cannon.position.x;
+    as = as / abs(as);
+
+    // clear tapu
+    tapu.clear();
+    // new smoke rings
+    smoke.clear();
+    for(int i=0;i<5;i++){
+        posX = as * (rand() % 500);
+        smoke.push_back(Smoke(50, plane.position.x - posX, posY, posZ, 8, 7, 1));
+        posZ -= 100.0f;
+    }
+
+    // new mountains
+    mount.clear();
+    posX = 0;
+    posY = -47;
+    posZ = plane.position.z - 100.0f;
+    for(int i =0;i<5;i++){
+        posX = as * (rand() % 500);
+        mount.push_back(Mount(plane.position.x - posX, posY, posZ, 10, 20));
+        tapu.push_back(Tapu(plane.position.x - posX, posY - 2.5f, posZ, 12, COLOR_GREEN));
+        posZ -= 100.0f;
+    }
+
+    // new fuelups
+    fuelup.clear();
+    fuelup.push_back(Fuelup(plane.position.x - as*250, -20, plane.position.z - 250.0f, 3, 2));
+
+    // new parachutes
+    posX = 0;
+    posY = -20;
+    posZ = plane.position.z - 50.0f;
+    para.clear();
+    for(int i =0;i<10;i++){
+        posX = as * (rand() % 500);
+        para.push_back(Para(plane.position.x - posX, posY, posZ, 5));
+        posZ -= 50.0f;
+    }
+
+    // new volcanoes
+    volcano.clear();
+    posX = 0;
+    posY = -47;
+    posZ = plane.position.z - 100.0f;
+    for(int i =0;i<5;i++){
+        posX = as * (rand() % 500);
+        volcano.push_back(Volcano(plane.position.x - posX, posY, posZ, 5, 10));
+        tapu.push_back(Tapu(plane.position.x - posX, posY - 2.5f, posZ, 8, COLOR_GREEN));
+        posZ -= 100.0f;
+    }
+    
+}
+
 /* Initialize the OpenGL rendering properties */
 /* Add all the models to be created here */
 void initGL(GLFWwindow *window, int width, int height) {
     /* Objects should be created before any other gl function and shaders */
     // Create the models
+    // dashboard objects
     score = Score(30, 27);
     health = Health(-29, -28);
     fuel = Fuel(23, -28);
@@ -281,16 +359,14 @@ void initGL(GLFWwindow *window, int width, int height) {
     compass = Compass(-26, -5);
     speed = Speed(-23, 25);
 
-    plane = Plane(0, -40, 0, COLOR_RED);
-    para.push_back(Para(0, -20, -40, 5));
-    sea = Sea(0, -50.0f, 0, 1000, COLOR_SEA);
-    tapu.push_back(Tapu(0, -49.5, -80, 8, COLOR_GREEN));
-    tapu.push_back(Tapu(45, -49.5, -80, 8, COLOR_GREEN));
-    cannon = Cannon(45, -49.5, -80, 1.0f, 8);
+    // main objects
     arrow = Arrow(0, -37.5, 0, 1.0f, 2.0f);
-    volcano.push_back(Volcano(0, -47, -80, 5, 10));
-    smoke.push_back(Smoke(50, 0, 0, -100, 8.0f, 7.0f, 1.0f));
-    fuelup.push_back(Fuelup(50, 0, -50, 3, 2));
+    plane = Plane(0, -40, 0, COLOR_RED);
+    sea = Sea(0, -50.0f, 0, 1000, COLOR_SEA);
+    cannon = Cannon(500, -49.5, -500, 1.0f, 8);
+    generateNewObjects();
+    tapu.push_back(Tapu(500, -49.5, -500, 8, COLOR_GREEN));
+    
     // Create and compile our GLSL program from the shaders
     programID = LoadShaders("Sample_GL.vert", "Sample_GL.frag");
     // Get a handle for our "MVP" uniform
@@ -368,7 +444,10 @@ void checkColissions()
     // colission of bomb with cannon
     for(int i=0;i<bomb.size();i++){
         if(detect_collision(bomb[i].bounding_box(), cannon.bounding_box())){
-            cannon.position.z -= 200.0f;
+            cannon.position.z -= 500.0f;
+            cannon.position.x += 500.0f * (rand()%2?1:-1);
+            system("aplay -c 1 -t wav -q ../sound/cannon.wav&");
+            generateNewObjects();
             tapu.push_back(Tapu(cannon.position.x, cannon.position.y, cannon.position.z, 8, COLOR_GREEN));
             plane.score += 100;
             bomb.erase(bomb.begin() + i);
@@ -414,12 +493,52 @@ void checkColissions()
     }
 
     // colission of plane with mountains
+    for(int j=0;j<mount.size();j++){
+        if(detect_collision(plane.bounding_box(), mount[j].bounding_box())){
+            plane.health = 0.0f;
+            break;
+        }
+    }
 
     // colission of plane with fuel ups
     for(int j=0;j<fuelup.size();j++){
         if(detect_collision(plane.bounding_box(), fuelup[j].bounding_box())){
             fuelup.erase(fuelup.begin()+j);
             plane.fuel = 1.00f;
+            break;
+        }
+    }
+}
+void deleteObjects()
+{
+    // delete missiles
+    for(int i=0;i<missile.size();i++){
+        float x = glm::distance(missile[i].position, plane.position);
+        if(x > 200){
+            missile.erase(missile.begin()+i);
+            break;
+        }
+    }
+    // delete bomb
+    for(int i=0;i<bomb.size();i++){
+        float x = glm::distance(bomb[i].position, plane.position);
+        if(x > 200){
+            bomb.erase(bomb.begin()+i);
+            break;
+        }
+    }
+    // delete gola
+    for(int i=0;i<gola.size();i++){
+        float x = glm::distance(gola[i].position, plane.position);
+        if(x > 200){
+            gola.erase(gola.begin()+i);
+            break;
+        }
+    }
+    // delete parachute
+    for(int i=0;i<para.size();i++){
+        if(para[i].position.y < -60.0f){
+            para.erase(para.begin()+i);
             break;
         }
     }
@@ -439,13 +558,20 @@ int main(int argc, char **argv) {
         // Process timers
         if (t60.processTick()) {
             // 60 fps
+            int o = glfwGetKey(window, GLFW_KEY_O);
+            if(o){
+                pause = false;
+            }
+            else if (!pause){
                 // OpenGL Draw commands
-            draw();
-            // Swap Frame Buffer in double buffering
-            glfwSwapBuffers(window);
-            checkColissions();
-            tick_elements();
-            tick_input(window);
+                draw();
+                // Swap Frame Buffer in double buffering
+                glfwSwapBuffers(window);
+                checkColissions();
+                deleteObjects();
+                tick_elements();
+                tick_input(window);
+            }
         }
 
         // Poll for Keyboard and mouse events

@@ -55,9 +55,9 @@ bool Plane::tick() {
 		this->speed = 0;
 	if(this->speed > this->maxSpeed)
 		this->speed = this->maxSpeed;
-	this->dir[0] = this->ret[2][0];this->dir[1] = this->ret[2][0]; this->dir[2] = this->ret[2][0];
-	this->up[0] = this->ret[1][0];this->up[1] = this->ret[1][0]; this->up[2] = this->ret[1][0];
-	this->cr[0] = this->ret[0][0];this->cr[1] = this->ret[0][0]; this->cr[2] = this->ret[0][0];
+	this->dir[0] = this->ret[2][0];this->dir[1] = this->ret[2][1]; this->dir[2] = this->ret[2][2];
+	this->up[0] = this->ret[1][0];this->up[1] = this->ret[1][1]; this->up[2] = this->ret[1][2];
+	this->cr[0] = this->ret[0][0];this->cr[1] = this->ret[0][1]; this->cr[2] = this->ret[0][2];
 }
 
 

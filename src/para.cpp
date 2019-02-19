@@ -26,7 +26,7 @@ Para::Para(float x, float y, float z, float r) {
          0,  0, r,
     };
     this->obj = create3DObject(GL_TRIANGLES, 2*3,vertex_buffer_data, {0, 0, 0}, GL_FILL);
-    this->radius = r;
+    this->radius = 2*r;
     this->angle = 90.0f;
 }
 

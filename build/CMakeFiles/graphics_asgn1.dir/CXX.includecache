@@ -203,6 +203,8 @@ tapu.h
 /home/sankalp/3d-game-opengl/src/tapu.h
 volcano.h
 /home/sankalp/3d-game-opengl/src/volcano.h
+mount.h
+/home/sankalp/3d-game-opengl/src/mount.h
 missile.h
 /home/sankalp/3d-game-opengl/src/missile.h
 score.h
@@ -261,6 +263,22 @@ cylinder.h
 /home/sankalp/3d-game-opengl/src/cylinder.h
 
 /home/sankalp/3d-game-opengl/src/missile.h
+main.h
+/home/sankalp/3d-game-opengl/src/main.h
+cylinder.h
+/home/sankalp/3d-game-opengl/src/cylinder.h
+vector
+-
+
+/home/sankalp/3d-game-opengl/src/mount.cpp
+main.h
+/home/sankalp/3d-game-opengl/src/main.h
+mount.h
+/home/sankalp/3d-game-opengl/src/mount.h
+cylinder.h
+/home/sankalp/3d-game-opengl/src/cylinder.h
+
+/home/sankalp/3d-game-opengl/src/mount.h
 main.h
 /home/sankalp/3d-game-opengl/src/main.h
 cylinder.h

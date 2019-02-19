@@ -16,10 +16,11 @@ void Gola::set_position(float x, float y, float z) {
 }
 
 void Gola::tick() {
-    this->position.x += 0.5f*dir[0];
-    this->position.y += 0.5f*dir[1];
-    this->position.z += 0.5f*dir[2];
+    this->position.x += 1.0f*dir[0];
+    this->position.y += 1.0f*dir[1];
+    this->position.z += 1.0f*dir[2];
 }
+
 void Gola::draw(glm::mat4 VP) {
 	Matrices.model = glm::mat4(1.0f);
     glm::mat4 translate = glm::translate (this->position);    // glTranslatef

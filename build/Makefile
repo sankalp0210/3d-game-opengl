@@ -528,6 +528,33 @@ src/missile.cpp.s:
 	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/missile.cpp.s
 .PHONY : src/missile.cpp.s
 
+src/mount.o: src/mount.cpp.o
+
+.PHONY : src/mount.o
+
+# target to build an object file
+src/mount.cpp.o:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/mount.cpp.o
+.PHONY : src/mount.cpp.o
+
+src/mount.i: src/mount.cpp.i
+
+.PHONY : src/mount.i
+
+# target to preprocess a source file
+src/mount.cpp.i:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/mount.cpp.i
+.PHONY : src/mount.cpp.i
+
+src/mount.s: src/mount.cpp.s
+
+.PHONY : src/mount.s
+
+# target to generate assembly for a file
+src/mount.cpp.s:
+	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/mount.cpp.s
+.PHONY : src/mount.cpp.s
+
 src/nonedit.o: src/nonedit.cpp.o
 
 .PHONY : src/nonedit.o
@@ -906,6 +933,9 @@ help:
 	@echo "... src/missile.o"
 	@echo "... src/missile.i"
 	@echo "... src/missile.s"
+	@echo "... src/mount.o"
+	@echo "... src/mount.i"
+	@echo "... src/mount.s"
 	@echo "... src/nonedit.o"
 	@echo "... src/nonedit.i"
 	@echo "... src/nonedit.s"

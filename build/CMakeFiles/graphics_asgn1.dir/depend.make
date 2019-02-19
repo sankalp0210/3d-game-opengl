@@ -72,6 +72,7 @@ CMakeFiles/graphics_asgn1.dir/src/main.cpp.o: ../src/health.h
 CMakeFiles/graphics_asgn1.dir/src/main.cpp.o: ../src/main.cpp
 CMakeFiles/graphics_asgn1.dir/src/main.cpp.o: ../src/main.h
 CMakeFiles/graphics_asgn1.dir/src/main.cpp.o: ../src/missile.h
+CMakeFiles/graphics_asgn1.dir/src/main.cpp.o: ../src/mount.h
 CMakeFiles/graphics_asgn1.dir/src/main.cpp.o: ../src/para.h
 CMakeFiles/graphics_asgn1.dir/src/main.cpp.o: ../src/plane.h
 CMakeFiles/graphics_asgn1.dir/src/main.cpp.o: ../src/score.h
@@ -86,6 +87,11 @@ CMakeFiles/graphics_asgn1.dir/src/missile.cpp.o: ../src/cylinder.h
 CMakeFiles/graphics_asgn1.dir/src/missile.cpp.o: ../src/main.h
 CMakeFiles/graphics_asgn1.dir/src/missile.cpp.o: ../src/missile.cpp
 CMakeFiles/graphics_asgn1.dir/src/missile.cpp.o: ../src/missile.h
+
+CMakeFiles/graphics_asgn1.dir/src/mount.cpp.o: ../src/cylinder.h
+CMakeFiles/graphics_asgn1.dir/src/mount.cpp.o: ../src/main.h
+CMakeFiles/graphics_asgn1.dir/src/mount.cpp.o: ../src/mount.cpp
+CMakeFiles/graphics_asgn1.dir/src/mount.cpp.o: ../src/mount.h
 
 CMakeFiles/graphics_asgn1.dir/src/nonedit.cpp.o: ../src/main.h
 CMakeFiles/graphics_asgn1.dir/src/nonedit.cpp.o: ../src/nonedit.cpp

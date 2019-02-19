@@ -66,18 +66,15 @@ void keyboardChar(GLFWwindow *window, unsigned int key) {
 void mouseButton(GLFWwindow *window, int button, int action, int mods) {
     switch (button) {
     case GLFW_MOUSE_BUTTON_LEFT:
-        if (action == GLFW_PRESS) {
-            // Do something
-            return;
-        } else if (action == GLFW_RELEASE) {
-            // Do something
+        if (action == GLFW_RELEASE) {
+            launchMissile = true;
         }
         break;
-    // case GLFW_MOUSE_BUTTON_RIGHT:
-    // if (action == GLFW_RELEASE) {
-    // rectangle_rot_dir *= -1;
-    // }
-    // break;
+    case GLFW_MOUSE_BUTTON_RIGHT:
+        if (action == GLFW_RELEASE) {
+            launchBomb = true;
+        }
+        break;
     default:
         break;
     }
