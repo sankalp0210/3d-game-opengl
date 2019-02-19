@@ -56,7 +56,8 @@ float camera_rotation_angle = 0, degree = 0, radiusB = 0;
 float heliX = 0, heliY = 0, heliZ = -10;
 float aimX = 0, aimY = 0, aimZ = -10;
 double xpos, ypos;
-bool barrelRoll = false, pause = false;
+bool barrelRoll = false, pause = false, loopingLoop = false;
+float loopRot = 0, barrelRot = 0;
 glm::vec3 Axis;
 bool launchMissile = false, launchBomb = false;
 Timer t60(1.0 / 60);
@@ -173,16 +174,33 @@ void tick_input(GLFWwindow *window) {
     int b = glfwGetKey(window, GLFW_KEY_B);
     int r = glfwGetKey(window, GLFW_KEY_R);
     int p = glfwGetKey(window, GLFW_KEY_P);
+    int l = glfwGetKey(window, GLFW_KEY_L);
     if(p){
         pause = true;
     }
     GLfloat deg = (2*3.1415926/360.0f);
     if(barrelRoll){
-        if(degree > 360)
+        barrelRot += 1.0f;
+        if(barrelRot >=360){
             barrelRoll = false;
-        // plane.position.x += 
+            barrelRot = 0;
+        }
+        plane.speed = 1.0f;
+        plane.rotation.z = 1.0f;
+        plane.position.z -= plane.speed*plane.ret[2][2];
+        plane.position.y -= plane.speed*plane.ret[2][1];
+        plane.position.x -= plane.speed*plane.ret[2][0];
     }
-    if(!barrelRoll){
+    if(loopingLoop){
+        loopRot += 1.0f;
+        if(loopRot >=360){
+            loopingLoop = false;
+            loopRot = 0;
+        }
+        plane.speed = 1.0f;
+        plane.rotation.x = 1.0f;
+    }
+    if(!barrelRoll and !loopingLoop){
         degree = 0;
         radiusB = 20.0f;
         Axis = plane.dir + radiusB*plane.up;
@@ -206,6 +224,9 @@ void tick_input(GLFWwindow *window) {
         }
         if(r){
             barrelRoll = true;
+        }
+        if(l){
+            loopingLoop = true;
         }
         if(space){
             plane.position.y += 1.0f;
